@@ -3,12 +3,13 @@ stormpath-ruby-samples
 
 Stormpath sample code in the Ruby programming language
 
-You need the Stormpath SDK Ruby gem installed on your system, so you may installed by running the following command:
+To run this sample, you will need the Stormpath Ruby SDK gem installed on your system.  You can install it via the following command:
 
     gem install stormpath-sdk
 
-After cloning this project, test getting your Tenant data:
+Then, in the cloned project:
 
-    ruby stormpath.rb file ~/.stormpath/your_api_key.yml -o tenant
+    cd bin/
+    ruby stormpath.rb file ~/.stormpath/your_stormpath_api_key.yml -o tenant
 
-Additionally, to quickly test your Stormpath options, run the bin/stormpath.rb file with no arguments (ruby bin/stormpath.rb) for a guide on how the script works.
+This will print out your Tenant data (e.g. name, link to applications and directories).
