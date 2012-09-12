@@ -56,8 +56,22 @@ case ARGV[0]
       if (opt == 'tenant')
 
         puts "Getting tenant from Client..."
-        puts client.current_tenant.inspect
-        puts "Done"
+        begin
+
+          puts client.current_tenant.inspect
+
+          puts "Done"
+
+        rescue Stormpath::Resource::ResourceError => re
+
+          p '** Error Retrieving Tenant **'
+          p 'Message: ' + re.message
+          p 'HTTP Status: ' + re.get_status.to_s
+          p 'Developer Message: ' + re.get_developer_message
+          p 'More Information: ' + re.get_more_info
+          p 'Error Code: ' + re.get_code.to_s
+
+        end
 
       else
 
