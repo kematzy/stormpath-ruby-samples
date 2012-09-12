@@ -12,4 +12,4 @@ Then, in the cloned project:
     cd bin/
     ruby stormpath.rb file ~/.stormpath/your_stormpath_api_key.yml -o tenant
 
-This will print out your Tenant data (e.g. name, link to applications and directories).
+This will print out your Tenant data (e.g. name, link to applications and directories).  If you see your Tenant's @properties printed, you've successfully communicated with Stormpath via the Ruby SDK!
