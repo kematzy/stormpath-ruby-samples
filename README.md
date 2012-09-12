@@ -1,7 +1,7 @@
 stormpath-ruby-samples
 ======================
 
-Stormpath sample code in the Ruby programming language
+This is a little quickstart command line program that will show you how to create a Stormpath SDK client using a Stormpath API Key file and communicate with the Stormpath REST API.
 
 To run this sample, you will need the Stormpath Ruby SDK gem installed on your system.  You can install it via the following command:
 
