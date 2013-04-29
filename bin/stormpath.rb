@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'optparse'
 require 'rubygems'
 require 'stormpath-sdk'
@@ -50,19 +52,20 @@ case ARGV[0]
 
     if !file.nil? and File::exist? file
 
-      client = Stormpath::Client::ClientBuilder.new.set_api_key_file_location(file).build
-
+      client = Stormpath::Client.new({
+        api_key_file_location: file
+      })
 
       if (opt == 'tenant')
 
         puts "Getting tenant from Client..."
         begin
 
-          puts client.current_tenant.inspect
+          puts client.tenant.inspect
 
           puts "Done"
 
-        rescue Stormpath::Resource::ResourceError => re
+        rescue Stormpath::Error => re
 
           p '** Error Retrieving Tenant **'
           p 'Message: ' + re.message
