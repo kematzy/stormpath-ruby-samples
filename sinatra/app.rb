@@ -14,9 +14,6 @@ enable :sessions
 enable :method_override
 
 get "/" do
-  # check to see if user is logged in
-  # if not, go to /session/new
-  # otherwise, go to /users
   if session[:authenticated]
     redirect "/users"
   else
@@ -28,6 +25,29 @@ get "/users" do
   erb :users, :layout => true, :locals => {
     :session => session, :users => application.accounts
   }
+end
+
+get "/users/:user_url/edit" do
+  user = client.accounts.get CGI.unescape(params[:user_url])
+
+  erb :users_edit, :layout => true, :locals => { :user => user }
+end
+
+post '/users/:user_url' do
+  user = client.accounts.get CGI.unescape(params[:user_url])
+  user.given_name = params[:given_name]
+  user.surname = params[:surname]
+  user.email = params[:email]
+  user.save
+
+  redirect '/'
+end
+
+delete '/users/:user_url' do
+  user = client.accounts.get CGI.unescape(params[:user_url])
+  user.delete
+
+  redirect '/'
 end
 
 get "/session/new" do
@@ -49,9 +69,7 @@ post "/session" do
     redirect "/"
   rescue Stormpath::Error => error
     erb :login, :layout => true, :locals => {
-      :flash => {
-        :message => "We were unable to log you in"
-      }
+      :flash => { :message => error.message }
     }
   end
 end

@@ -13,7 +13,14 @@
       <td><%= user.username %></td>
       <td><%= user.email %></td>
       <td>
-        <a href="/users/<%= user.href %>/edit">Edit</a>
+        <a href="users/<%= CGI.escape(user.href.to_s) %>/edit">Edit</a>
+      </td>
+      <td>
+        <form action="/users/<%= CGI.escape(user.href.to_s) %>" method='POST'
+          onsubmit="javascript:return confirm('Are you sure you want to delete this user?');">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete">
+        </form>
       </td>
     </tr>
   <% end %>
