@@ -1,6 +1,6 @@
-<h1>account List</h1>
+<h1>Account List</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Username</th>
@@ -19,7 +19,7 @@
         <form action="/accounts/<%= CGI.escape(account.href.to_s) %>" method='POST'
           onsubmit="javascript:return confirm('Are you sure you want to delete this account?');">
           <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="Delete">
+          <input class="btn" type="submit" value="Delete">
         </form>
       </td>
     </tr>

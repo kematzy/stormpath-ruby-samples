@@ -10,6 +10,7 @@ client = Stormpath::Client.new({
 application = client.applications.get(ENV["STORMPATH_RUBY_SAMPLE_APPLICATION_URL"])
 directory = client.directories.get(ENV["STORMPATH_RUBY_SAMPLE_DIRECTORY_URL"])
 
+set :root, File.dirname(__FILE__)
 enable :sessions
 enable :method_override
 
@@ -97,16 +98,20 @@ post "/session" do
   begin
     authentication_result = application.authenticate_account login_request
     session[:authenticated] = true
+    session[:email] = email
     redirect "/accounts"
   rescue Stormpath::Error => error
     render_view :login, {
-      :flash => { :message => error.message }
+      :flash => {
+        :message => error.message
+      }
     }
   end
 end
 
 delete "/session" do
   session.delete(:authenticated)
+  session.delete(:email)
   redirect "/"
 end
 

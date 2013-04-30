@@ -1,9 +1,27 @@
-<h1>Edit account</h1>
+<h1>Edit Account</h1>
 
-<form action="/accounts/<%= CGI.escape(account.href) %>" method="POST">
-  <input type="text" name="given_name" value="<%= account.given_name %>">
-  <input type="text" name="surname" value="<%= account.surname %>">
-  <input type="text" name="email" value="<%= account.email %>">
-
-  <input type="submit" value="Save">
+<form class="form-horizontal" action="/accounts/<%= CGI.escape(account.href) %>" method="POST">
+  <div class="control-group">
+    <label class="control-label" for="given_name">Given Name</label>
+    <div class="controls">
+      <input value="<%= account.given_name %>" type="text" name="given_name" id="given_name" placeholder="Given Name">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="surname">Surname</label>
+    <div class="controls">
+      <input value="<%= account.surname %>" type="text" name="surname" id="surname" placeholder="Surname">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="email">Email</label>
+    <div class="controls">
+      <input value="<%= account.email %>" type="text" name="email" id="email" placeholder="Email">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <input type="submit" value="Save" class="btn-primary btn">
+    </div>
+  </div>
 </form>
