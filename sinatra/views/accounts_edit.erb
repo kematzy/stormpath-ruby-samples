@@ -1,0 +1,9 @@
+<h1>Edit account</h1>
+
+<form action="/accounts/<%= CGI.escape(account.href) %>" method="POST">
+  <input type="text" name="given_name" value="<%= account.given_name %>">
+  <input type="text" name="surname" value="<%= account.surname %>">
+  <input type="text" name="email" value="<%= account.email %>">
+
+  <input type="submit" value="Save">
+</form>

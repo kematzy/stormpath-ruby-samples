@@ -13,41 +13,72 @@ directory = client.directories.get(ENV["STORMPATH_RUBY_SAMPLE_DIRECTORY_URL"])
 enable :sessions
 enable :method_override
 
+def render_view(view, locals={})
+  locals = { :session => session }.merge locals
+  erb view, :layout => true, :locals => locals
+end
+
+def require_logged_in()
+  redirect('/session/new') unless session[:authenticated]
+end
+
 get "/" do
-  if session[:authenticated]
-    redirect "/users"
-  else
-    redirect "/session/new"
+  redirect "/accounts"
+end
+
+before '/accounts*' do
+  require_logged_in
+end
+
+get "/accounts" do
+  render_view :accounts, { :accounts => application.accounts }
+end
+
+get "/accounts/:account_url/edit" do
+  account = client.accounts.get CGI.unescape(params[:account_url])
+
+  render_view :accounts_edit, { :account => account }
+end
+
+post '/accounts/:account_url' do
+  account = client.accounts.get CGI.unescape(params[:account_url])
+  account.given_name = params[:given_name]
+  account.surname = params[:surname]
+  account.email = params[:email]
+  account.save
+
+  redirect '/accounts'
+end
+
+delete '/accounts/:account_url' do
+  account = client.accounts.get CGI.unescape(params[:account_url])
+  account.delete
+
+  redirect '/accounts'
+end
+
+get '/account/new' do
+  account = Stormpath::Resource::Account.new({})
+
+  render_view :accounts_new, { :account => account }
+end
+
+post '/account' do
+  account_params  = params.select do |k, v|
+    %W[given_name surname email username password].include?(k)
   end
-end
 
-get "/users" do
-  erb :users, :layout => true, :locals => {
-    :session => session, :users => application.accounts
-  }
-end
+  account = Stormpath::Resource::Account.new account_params
 
-get "/users/:user_url/edit" do
-  user = client.accounts.get CGI.unescape(params[:user_url])
-
-  erb :users_edit, :layout => true, :locals => { :user => user }
-end
-
-post '/users/:user_url' do
-  user = client.accounts.get CGI.unescape(params[:user_url])
-  user.given_name = params[:given_name]
-  user.surname = params[:surname]
-  user.email = params[:email]
-  user.save
-
-  redirect '/'
-end
-
-delete '/users/:user_url' do
-  user = client.accounts.get CGI.unescape(params[:user_url])
-  user.delete
-
-  redirect '/'
+  begin
+    directory.accounts.create account
+    redirect "/session/new"
+  rescue Stormpath::Error => error
+    render_view :accounts_new, {
+      :account => account,
+      :flash => { :message => error.message }
+    }
+  end
 end
 
 get "/session/new" do
@@ -66,9 +97,9 @@ post "/session" do
   begin
     authentication_result = application.authenticate_account login_request
     session[:authenticated] = true
-    redirect "/"
+    redirect "/accounts"
   rescue Stormpath::Error => error
-    erb :login, :layout => true, :locals => {
+    render_view :login, {
       :flash => { :message => error.message }
     }
   end
@@ -77,4 +108,19 @@ end
 delete "/session" do
   session.delete(:authenticated)
   redirect "/"
+end
+
+get '/password_reset/new' do
+  render_view :password_reset_new
+end
+
+post '/password_reset' do
+  begin
+    application.send_password_reset_email params[:username_or_email]
+    redirect '/session/new'
+  rescue Stormpath::Error => error
+    render_view :password_reset_new, {
+      :flash => { :message => error.message }
+    }
+  end
 end
