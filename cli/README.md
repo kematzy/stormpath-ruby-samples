@@ -1,5 +1,5 @@
-stormpath-ruby-samples
-======================
+Ruby CLI example
+================
 
 This is a little quickstart command line program that will show you how to
 create a Stormpath SDK client using a Stormpath API Key file and communicate

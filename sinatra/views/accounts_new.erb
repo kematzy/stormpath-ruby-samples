@@ -1,0 +1,39 @@
+<h1>Create account</h1>
+
+<form action="/account" method="POST" class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="given_name">Given Name</label>
+    <div class="controls">
+      <input type="text" name="given_name" value="<%= account.given_name %>" placeholder="Given Name">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="surname">Surname</label>
+    <div class="controls">
+      <input type="text" name="surname" value="<%= account.surname %>" placeholder="Surname">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="email">Email</label>
+    <div class="controls">
+      <input type="text" name="email" value="<%= account.email %>" placeholder="Email">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="username">Username</label>
+    <div class="controls">
+      <input type="text" name="username" value="<%= account.username %>" placeholder="Username">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="password">Password</label>
+    <div class="controls">
+      <input type="password" name="password" placeholder="Password">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <input type="submit" value="Save" class="btn btn-primary">
+    </div>
+  </div>
+</form>
