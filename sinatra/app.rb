@@ -121,7 +121,7 @@ end
 
 post '/password_reset' do
   begin
-    application.send_password_reset_email params[:email_or_username]
+    application.send_password_reset_email params[:email]
     redirect '/session/new'
   rescue Stormpath::Error => error
     render_view :password_reset_new, {
