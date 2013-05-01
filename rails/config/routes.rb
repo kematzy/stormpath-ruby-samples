@@ -3,7 +3,7 @@ StormpathSample::Application.routes.draw do
   root to: 'users#index'
 
   resource :session
-  resource :password_reset
+  resources :password_reset_tokens
   resources :users
 
   # The priority is based upon order of creation:

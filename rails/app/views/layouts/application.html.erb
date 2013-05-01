@@ -20,7 +20,7 @@
         <% end %>
       </div>
     </div>
-    <% if defined? flash %>
+    <% if flash[:message] %>
       <div class="alert alert-error"><%= flash[:message] %></div>
     <% end %>
     <div class="page-content">
