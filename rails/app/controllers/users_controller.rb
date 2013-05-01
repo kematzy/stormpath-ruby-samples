@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     unless @user == current_user
-      @user.delete
+      @user.destroy
     else
       flash[:message] = "You can not delete your own account!"
     end
