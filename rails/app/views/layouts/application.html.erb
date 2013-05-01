@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StormpathSample</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/stormpath.css">
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="/">Stormpath <% if session[:email] %>>> <%= session[:email] %><% end %></a>
+        <% if session[:user_id] %>
+          <form method="post" action="/session">
+            <input class="btn logout" type="submit" value="log out">
+            <input type="hidden" value="DELETE" name="_method">
+          </form>
+        <% end %>
+      </div>
+    </div>
+    <% if defined? flash %>
+      <div class="alert alert-error"><%= flash[:message] %></div>
+    <% end %>
+    <div class="page-content">
+      <%= yield %>
+    </div>
+  </body>
+</html>
