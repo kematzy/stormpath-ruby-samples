@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430221810) do
+ActiveRecord::Schema.define(:version => 20130501190622) do
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "stormpath_url"
+    t.string   "css_background"
   end
 
   add_index "users", ["stormpath_url"], :name => "index_users_on_stormpath_url"

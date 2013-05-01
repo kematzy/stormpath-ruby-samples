@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/stormpath.css">
   </head>
-  <body>
+  <body style="background: <%= if logged_in? then current_user.css_background end %>";>
     <div class="navbar">
       <div class="navbar-inner">
-        <a class="brand" href="/">Stormpath <% if session[:email] %>>> <%= session[:email] %><% end %></a>
+        <a class="brand" href="/">Stormpath <%= if logged_in? then ">> #{current_user.username}" end %></a>
         <% if session[:user_id] %>
           <form method="post" action="/session">
             <input class="btn logout" type="submit" value="log out">

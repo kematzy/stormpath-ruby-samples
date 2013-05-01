@@ -32,9 +32,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @user = User.find(params[:id])
-    @user.delete
+
+    unless @user == current_user
+      @user.delete
+    else
+      flash[:message] = "You can not delete your own account!"
+    end
 
     redirect_to users_path
   end
