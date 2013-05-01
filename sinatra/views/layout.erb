@@ -7,7 +7,7 @@
   <body>
     <div class="navbar">
       <div class="navbar-inner">
-        <a class="brand" href="/">Stormpath <% if session[:email] %>>> <%= session[:email] %><% end %></a>
+        <a class="brand" href="/">Stormpath <% if session[:email_or_username] %>>> <%= session[:email_or_username] %><% end %></a>
         <% if defined? session and session[:authenticated] %>
           <form method="post" action="/session">
             <input class="btn logout" type="submit" value="log out">

@@ -87,18 +87,18 @@ get "/session/new" do
 end
 
 post "/session" do
-  email = params[:email]
+  email_or_username = params[:email_or_username]
   password = params[:password]
 
   login_request = Stormpath::Authentication::UsernamePasswordRequest.new(
-    email,
+    email_or_username,
     password
   )
 
   begin
     authentication_result = application.authenticate_account login_request
     session[:authenticated] = true
-    session[:email] = email
+    session[:email_or_username] = email_or_username
     redirect "/accounts"
   rescue Stormpath::Error => error
     render_view :login, {
@@ -111,7 +111,7 @@ end
 
 delete "/session" do
   session.delete(:authenticated)
-  session.delete(:email)
+  session.delete(:email_or_username)
   redirect "/"
 end
 
@@ -121,7 +121,7 @@ end
 
 post '/password_reset' do
   begin
-    application.send_password_reset_email params[:username_or_email]
+    application.send_password_reset_email params[:email_or_username]
     redirect '/session/new'
   rescue Stormpath::Error => error
     render_view :password_reset_new, {
