@@ -20,11 +20,19 @@ def render_view(view, locals={})
 end
 
 def require_logged_in()
-  redirect('/session/new') unless session[:authenticated]
+  redirect('/sessions/new') unless session[:authenticated]
+end
+
+def require_logged_out()
+  redirect('/accounts') if session[:authenticated]
 end
 
 get "/" do
   redirect "/accounts"
+end
+
+before "/sessions/new" do
+  require_logged_out
 end
 
 before '/accounts*' do
