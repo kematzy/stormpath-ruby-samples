@@ -82,6 +82,12 @@ post '/account' do
   end
 end
 
+get '/account_verifications' do
+  client.tenant.verify_account_email params[:sptoken]
+
+  redirect "/session/new"
+end
+
 get "/session/new" do
   erb :login, :layout => true
 end
