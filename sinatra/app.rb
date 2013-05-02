@@ -43,13 +43,13 @@ get "/accounts" do
   render_view :accounts, { :accounts => application.accounts }
 end
 
-get "/accounts/:account_url/edit" do
+get "/accounts/:account_url" do
   account = client.accounts.get CGI.unescape(params[:account_url])
 
   render_view :accounts_edit, { :account => account }
 end
 
-post '/accounts/:account_url' do
+patch '/accounts/:account_url' do
   account = client.accounts.get CGI.unescape(params[:account_url])
   account.given_name = params[:given_name]
   account.surname = params[:surname]
@@ -66,13 +66,13 @@ delete '/accounts/:account_url' do
   redirect '/accounts'
 end
 
-get '/account/new' do
+get '/accounts/new' do
   account = Stormpath::Resource::Account.new({})
 
   render_view :accounts_new, { :account => account }
 end
 
-post '/account' do
+post '/accounts' do
   account_params  = params.select do |k, v|
     %W[given_name surname email username password].include?(k)
   end
@@ -163,4 +163,3 @@ patch '/password_reset_tokens/:account_url' do
 
   redirect '/session/new'
 end
-

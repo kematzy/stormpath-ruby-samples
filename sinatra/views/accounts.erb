@@ -13,7 +13,7 @@
       <td><%= account.username %></td>
       <td><%= account.email %></td>
       <td>
-        <a class="btn" href="accounts/<%= CGI.escape(account.href.to_s) %>/edit">Edit</a>
+        <a class="btn" href="accounts/<%= CGI.escape(account.href.to_s) %>">Edit</a>
       </td>
       <td>
         <form action="/accounts/<%= CGI.escape(account.href.to_s) %>" method='POST'
