@@ -1,8 +1,15 @@
-<h1>Change your password</h1>
+<h1>Change Your Password</h1>
 
-<%= form_for @user, url: password_reset_token_path(@token) do |f| %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.submit %>
+<%= form_for @user, :html => { :class => "form-horizontal" }, :url => password_reset_token_path(@token) do |f| %>
+  <div class="control-group">
+    <%= label_tag :password, nil, class: 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :placeholder => 'Password' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit 'Save', :class => 'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>
