@@ -2,7 +2,7 @@ require 'pry-debugger'
 
 class UsersController < ApplicationController
   before_filter :require_login
-  skip_before_filter :require_login, only: [:new, :create]
+  skip_before_filter :require_login, only: [:new, :create, :verify]
 
   def index
     @users = User.all
@@ -42,5 +42,16 @@ class UsersController < ApplicationController
     end
 
     redirect_to users_path
+  end
+
+  def verify
+    begin
+      Stormpath::Rails::Client.verify_account_email params[:sptoken]
+      flash[:message] = 'Your account has been verified. Please log in using your username and password'
+    rescue Stormpath::Error => error
+      flash[:message] = error.message
+    end
+
+    redirect_to new_session_path
   end
 end

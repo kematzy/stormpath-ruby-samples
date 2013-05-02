@@ -4,7 +4,9 @@ StormpathSample::Application.routes.draw do
 
   resource :session
   resources :password_reset_tokens
-  resources :users
+  resources :users do
+    get 'verify', on: :collection
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
