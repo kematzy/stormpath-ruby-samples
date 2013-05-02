@@ -1,0 +1,26 @@
+<h1>Login</h1>
+
+<%= form_tag session_path, method: 'post', class: 'form-horizontal' do %>
+  <div class="control-group">
+    <%= label_tag :username_or_email, 'Username or email', class: 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :username_or_email %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= label_tag :password, nil, class: 'control-label' %>
+    <div class="controls">
+      <%= password_field_tag :password %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= button_tag 'Sign In', type: 'submit', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<div class="sub-actions">
+  <a href="<%= new_password_reset_token_path %>">Forgot your password?</a><br>
+  <a href="<%= new_user_path %>">Don't have an account?</a>
+</div>
