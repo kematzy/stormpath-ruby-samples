@@ -15,7 +15,9 @@ class UsersController < ApplicationController
   def create
     User.create params[:user]
 
-    redirect_to users_path
+    flash[:message] = "Your account has been created. Depending on how you've configured your directory, you may need to check your email and verify the account before logging in."
+
+    redirect_to new_session_path
   end
 
   def edit
@@ -26,6 +28,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update_attributes params[:user]
+      flash[:message] = "The account has been updated successfully."
       redirect_to users_path
     else
       render :edit
