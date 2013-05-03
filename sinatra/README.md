@@ -46,6 +46,9 @@ $ bundle install
     export STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION=PATH_TO_AFOREMENTIONED_APIKEY_PROPERTIES_FILE
     ```
 
+    There are other ways to pass API information to the SDK client; see the
+    [Stormpath SDK documentation][stormpath-sdk] for more info.
+
 1.  Run the application with Rack (installed by Bundler):
 
     ```
@@ -234,3 +237,4 @@ next to each row in the list of accounts.
   [stormpath]: http://stormpath.com/
   [stormpath-admin-login]: http://api.stormpath.com/login
   [create-api-keys]: http://www.stormpath.com/docs/ruby/product-guide#AssignAPIkeys
+  [stormpath-sdk]: https://github.com/stormpath/stormpath-sdk-ruby

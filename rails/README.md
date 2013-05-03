@@ -49,11 +49,13 @@ $ bundle install
 1.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
     ```
-    export STORMPATH_API_KEY_ID=xxx
-    export STORMPATH_API_KEY_SECRET=yyy
+    export STORMPATH_API_KEY_FILE_LOCATION=xxx
     export STORMPATH_APPLICATION_URL=aaa
     export STORMPATH_DIRECTORY_URL=bbb
     ```
+
+    There are other ways to pass API information to the Rails client; see the
+    [Stormpath Rails Gem documentation][stormpath-rails-gem] for more info.
 
 1.  Run the Rails server:
 
