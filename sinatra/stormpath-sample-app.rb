@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'sinatra'
+require 'rack-flash'
 require 'stormpath-sdk'
 
 require_relative 'helpers'
@@ -16,6 +17,8 @@ class SampleApp < Sinatra::Base
 
   enable :sessions
   enable :method_override
+
+  use Rack::Flash, :sweep => true
 
   helpers Sinatra::SampleApp::Helpers
 

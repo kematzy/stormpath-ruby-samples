@@ -28,11 +28,8 @@ module Sinatra
               session[:email_or_username] = email_or_username
               redirect "/accounts"
             rescue Stormpath::Error => error
-              render_view :login, {
-                :flash => {
-                  :message => error.message
-                }
-              }
+              flash[:notice] = error.message
+              render_view :login
             end
           end
 
@@ -41,6 +38,7 @@ module Sinatra
 
             session.delete(:authenticated)
             session.delete(:email_or_username)
+            flash[:notice] = "You have been logged out successfully."
 
             redirect "/session/new"
           end
