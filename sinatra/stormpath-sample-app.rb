@@ -3,6 +3,8 @@
 require 'sinatra'
 require 'stormpath-sdk'
 
+require_relative 'helpers'
+
 module StormpathSample
   class App < Sinatra::Base
 
@@ -15,8 +17,8 @@ module StormpathSample
     enable :sessions
     enable :method_override
 
+    helpers Sinatra::SampleApp::Helpers
   end
 end
 
-require_relative 'helpers'
 require_relative 'routes/init'
