@@ -1,8 +1,9 @@
-# Ruby Web App Example (Sinatra)
+# Ruby Web App Example (Rails)
 
 This is a basic web application that will show you how to create, load, edit,
-and delete accounts. We've used Sinatra as the platform for building this sample
-application - so getting up and running is a snap!
+and delete accounts. We've used Rails as the platform for building this sample
+application - so you should have plenty of working examples to get you started
+on your own Stormpath integration.
 
 ## Installation
 
@@ -38,32 +39,44 @@ $ bundle install
     1.  Take note of the _REST URL_ of the application and of directory
         you just created.
 
+1.  Run the Rake tasks for creating and migrating your database:
+
+    ```
+    rake db:create
+    rake db:migrate
+    ```
+
 1.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
     ```
-    export STORMPATH_RUBY_SAMPLE_APPLICATION_URL=REST_URL_OF_APPLICATION_HERE
-    export STORMPATH_RUBY_SAMPLE_DIRECTORY_URL=REST_URL_OF_DIRECTORY_HERE
-    export STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION=PATH_TO_AFOREMENTIONED_APIKEY_PROPERTIES_FILE
+    export STORMPATH_API_KEY_FILE_LOCATION=xxx
+    export STORMPATH_APPLICATION_URL=aaa
+    export STORMPATH_DIRECTORY_URL=bbb
     ```
 
-    There are other ways to pass API information to the SDK client; see the
-    [Stormpath SDK documentation][stormpath-sdk] for more info.
+    There are other ways to pass API information to the Rails client; see the
+    [Stormpath Rails Gem documentation][stormpath-rails-gem] for more info.
 
-1.  Run the application with Rack (installed by Bundler):
+1.  Run the Rails server:
 
     ```
-    $ rackup config.ru
+    $ rails s
     ```
 
     You should see output resembling the following:
 
     ```
-    [2013-05-03 11:38:19] INFO  WEBrick 1.3.1
-    [2013-05-03 11:38:19] INFO  ruby 2.0.0 (2013-02-24) [x86_64-darwin12.2.1]
-    [2013-05-03 11:38:19] INFO  WEBrick::HTTPServer#start: pid=9304 port=9292
+    $ rails s
+    => Booting WEBrick
+    => Rails 3.2.13 application starting in development on http://0.0.0.0:3000
+    => Call with -d to detach
+    => Ctrl-C to shutdown server
+    [2013-05-03 15:01:54] INFO  WEBrick 1.3.1
+    [2013-05-03 15:01:54] INFO  ruby 2.0.0 (2013-02-24) [x86_64-darwin12.2.1]
+    [2013-05-03 15:01:54] INFO  WEBrick::HTTPServer#start: pid=11614 port=3000
     ```
 
-1.  Visit the now-running site in your browser at http://0.0.0.0:9292
+1.  Visit the now-running site in your browser at http://0.0.0.0:3000
 
 ## Common Use Cases
 
@@ -76,7 +89,7 @@ To create your first account:
 
 1.  Fire up the demo application, as explained in the Quickstart Guide
 
-1.  Open http://0.0.0.0:9292 in your web browser
+1.  Open http://0.0.0.0:3000 in your web browser
 
 1.  Click the "Don't have an account?" link
 
@@ -86,66 +99,59 @@ Congratulations! Your first account has been created. Assuming all has gone well
 you should be able to log in to the sample application using its email and
 password.
 
-If you're interested in the log in/out implementation, check out
-routes/session.rb. In that file you'll find a route whose handler shows the
-login view (GET "/session/new") and a route whose handler forwards your username
-and password off to Stormpath for authentication (POST "/session").
+Interesting to note is that **your User model (what's actually being created
+here) has had the Stormpath::Rails::Account module included**, which hooks various
+lifecycle events (initialization, creation, updating, destruction) to pull in
+data from the Stormpath API. You are free to augment this User model as you see
+fit (the example application adds a "css_background" property); **the properties
+you add will be persisted to the local database, while the proxied Stormpath
+properties will not.**
 
-### Listing Accounts
+### Listing Users
 
 After creating an account ("User Creation") and logging in, you will be
-presented with a list of all the accounts created to-date. These accounts have
-been obtained from the Stormpath application and stored as settings of your
-Sinatra app, like so:
+presented with a list of all the User entities (extending the functionality of
+Stormpath::Rails::Account) created to-date. These User entities have been
+loaded via the User (ActiveRecord) class like so (example from
+"app/controllers/users_controller.rb"):
 
 ```ruby
-class SampleApp < Sinatra::Base
 
-  ...
-
-  set :client, Stormpath::Client.new({ :api_key_file_location => ENV['STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION'] })
-  set :application, settings.client.applications.get(ENV['STORMPATH_RUBY_SAMPLE_APPLICATION_URL'])
-  set :directory, settings.client.directories.get(ENV['STORMPATH_RUBY_SAMPLE_DIRECTORY_URL'])
-
-  ...
-
+def index
+  @users = User.all
 end
+
 ```
 
-### Accessing the Stormpath Client, Application, and Directory
+What's happening here is that we're instantiating a single User instance per
+record in our users table, which in turn triggers the "after_initialize"
+lifecycle event so as to load the Stormpath Account data, by URL. **It is
+important to note that no Stormpath data is persisted to your database
+beyond the Resource URL, which uniquely identifies the Resource in the
+Stormpath system.** By the time the consumer of the result of the "Users.all"
+call has its data, the User models have all been hydrated with data from the
+Stormpath API.
 
-When the Sinatra sample application starts up, a request is made to the
-Stormpath API in order to load your application and directory. The resulting
-Stormpath Resource objects are accessible through the "settings" hash on your
-Sinatra application, like so:
+### Interacting with the Stormpath Rails Client
+
+The Stormpath Rails client can be interacted with (after requiring the
+"stormpath-rails" gem) and then invoking methods on the class itself:
 
 ```ruby
-# in routes/accounts.rb
+# first...
+require 'stormpath-rails'
 
-module Sinatra
-  module SampleApp
-    module Routing
-      module Accounts
+# later...
+Stormpath::Rails::Client.send_password_reset_email("foo@example.com")
+Stormpath::Rails::Client.create_account({ ... })
 
-        def self.registered(app)
-
-          app.get '/sample_route' do
-
-            ...
-
-            settings.client # an instance of a Stormpath Client
-            settings.application # an instance of the Stormpath Application
-            settings.directory # an instance of the Stormpath Directory
-
-            ...
-
-          end
-        end
-      end
-    end
-  end
-end
 ```
+
+A complete list of functionality exposed by this client can be found in the
+[Stormpath Rails Gem documentation][stormpath-rails-gem]. Essentially, this
+client allows the consumer to perform the basic CRUD operations required by a
+system using the Stormpath service: creating a account, deleting an account,
+authenticating a password reset token, and so forth.
 
 ## Testing Specific Configurations
 
@@ -181,7 +187,7 @@ clicked the verification link in the email-body.
 
 If you wish for that email link to point to your local server - which will then
 use the Stormpath SDK to verify the account - modify "Account Verification Base
-URL" to "http://0.0.0.0:9292/account_verifications".
+URL" to "http://0.0.0.0:3000/accounts/verify".
 
 ### Local Password Reset Token Validation
 
@@ -199,7 +205,7 @@ your local server (instead of the Stormpath server):
 1.  Click "Workflows" and then "Show" link next to "Password Reset"
 
 1.  Change the value of "Base URL" to
-    "http://0.0.0.0:9292/password_reset_tokens"
+    "http://0.0.0.0:3000/password_reset_tokens"
 
 Now the email a account receives after resetting their password will contain a link
 pointing to a password reset token-verification URL on your system.
@@ -237,4 +243,4 @@ next to each row in the list of accounts.
   [stormpath]: http://stormpath.com/
   [stormpath-admin-login]: http://api.stormpath.com/login
   [create-api-keys]: http://www.stormpath.com/docs/ruby/product-guide#AssignAPIkeys
-  [stormpath-sdk]: https://github.com/stormpath/stormpath-sdk-ruby
+  [stormpath-rails-gem]: https://github.com/stormpath/stormpath-rails
