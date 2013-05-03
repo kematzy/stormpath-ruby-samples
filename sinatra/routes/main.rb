@@ -7,8 +7,8 @@ module Sinatra
 
         def self.registered(app)
 
-          app.get "/" do
-            redirect "/accounts"
+          app.get '/' do
+            redirect '/accounts'
           end
 
         end

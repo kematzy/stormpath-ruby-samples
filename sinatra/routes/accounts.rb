@@ -5,13 +5,13 @@ module Sinatra
 
         def self.registered(app)
 
-          app.get "/accounts" do
+          app.get '/accounts' do
             require_logged_in
 
             render_view :accounts, { :accounts => settings.application.accounts }
           end
 
-          app.get "/accounts/:account_url/edit" do
+          app.get '/accounts/:account_url/edit' do
             require_logged_in
 
             account = settings.client.accounts.get CGI.unescape(params[:account_url])
@@ -28,7 +28,7 @@ module Sinatra
             account.email = params[:email]
             account.save
 
-            flash[:notice] = "Account edited successfully."
+            flash[:notice] = 'Account edited successfully.'
 
             redirect '/accounts'
           end
@@ -39,7 +39,7 @@ module Sinatra
             account = settings.client.accounts.get CGI.unescape(params[:account_url])
             account.delete
 
-            flash[:notice] = "Account deleted successfully"
+            flash[:notice] = 'Account deleted successfully'
 
             redirect '/accounts'
           end
@@ -59,8 +59,8 @@ module Sinatra
 
             begin
               settings.directory.accounts.create account
-              flash[:notice] = "Your account was created successfully. Depending on directory configuration, you may need to validate account-creation through email."
-              redirect "/session/new"
+              flash[:notice] = 'Your account was created successfully. Depending on directory configuration, you may need to validate account-creation through email.'
+              redirect '/session/new'
             rescue Stormpath::Error => error
               flash[:notice] = error.message
               render_view :accounts_new, { :account => account }

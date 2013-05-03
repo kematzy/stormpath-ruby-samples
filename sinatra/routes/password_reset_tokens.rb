@@ -28,7 +28,7 @@ module Sinatra
             end
           end
 
-          app.get "/password_reset_tokens/:account_url" do
+          app.get '/password_reset_tokens/:account_url' do
             account = settings.client.accounts.get CGI.unescape(params[:account_url])
 
             render_view :password_reset_tokens_edit, { :account => account }
