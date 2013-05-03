@@ -1,7 +1,19 @@
-class StormpathSample::App < Sinatra::Base
+require 'sinatra/base'
 
-  get "/" do
-    redirect "/accounts"
+module Sinatra
+  module SampleApp
+    module Routing
+      module Main
+
+        def self.registered(app)
+
+          app.get "/" do
+            redirect "/accounts"
+          end
+
+        end
+
+      end
+    end
   end
-
 end

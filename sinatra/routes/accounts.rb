@@ -1,61 +1,72 @@
-class StormpathSample::App < Sinatra::Base
+module Sinatra
+  module SampleApp
+    module Routing
+      module Accounts
 
-  get "/accounts" do
-    require_logged_in
+        def self.registered(app)
 
-    render_view :accounts, { :accounts => settings.application.accounts }
-  end
+          app.get "/accounts" do
+            require_logged_in
 
-  get "/accounts/:account_url/edit" do
-    require_logged_in
+            render_view :accounts, { :accounts => settings.application.accounts }
+          end
 
-    account = settings.client.accounts.get CGI.unescape(params[:account_url])
+          app.get "/accounts/:account_url/edit" do
+            require_logged_in
 
-    render_view :accounts_edit, { :account => account }
-  end
+            account = settings.client.accounts.get CGI.unescape(params[:account_url])
 
-  patch '/accounts/:account_url' do
-    require_logged_in
+            render_view :accounts_edit, { :account => account }
+          end
 
-    account = settings.client.accounts.get CGI.unescape(params[:account_url])
-    account.given_name = params[:given_name]
-    account.surname = params[:surname]
-    account.email = params[:email]
-    account.save
+          app.patch '/accounts/:account_url' do
+            require_logged_in
 
-    redirect '/accounts'
-  end
+            account = settings.client.accounts.get CGI.unescape(params[:account_url])
+            account.given_name = params[:given_name]
+            account.surname = params[:surname]
+            account.email = params[:email]
+            account.save
 
-  delete '/accounts/:account_url' do
-    require_logged_in
+            redirect '/accounts'
+          end
 
-    account = settings.client.accounts.get CGI.unescape(params[:account_url])
-    account.delete
+          app.delete '/accounts/:account_url' do
+            require_logged_in
 
-    redirect '/accounts'
-  end
+            account = settings.client.accounts.get CGI.unescape(params[:account_url])
+            account.delete
 
-  get '/accounts/new' do
-    account = Stormpath::Resource::Account.new({})
+            redirect '/accounts'
+          end
 
-    render_view :accounts_new, { :account => account }
-  end
+          app.get '/accounts/new' do
+            account = Stormpath::Resource::Account.new({})
 
-  post '/accounts' do
-    account_params  = params.select do |k, v|
-      %W[given_name surname email username password].include?(k)
-    end
+            render_view :accounts_new, { :account => account }
+          end
 
-    account = Stormpath::Resource::Account.new account_params
+          app.post '/accounts' do
+            account_params  = params.select do |k, v|
+              %W[given_name surname email username password].include?(k)
+            end
 
-    begin
-      settings.directory.accounts.create account
-      redirect "/session/new"
-    rescue Stormpath::Error => error
-      render_view :accounts_new, {
-        :account => account,
-        :flash => { :message => error.message }
-      }
+            account = Stormpath::Resource::Account.new account_params
+
+            begin
+              settings.directory.accounts.create account
+              redirect "/session/new"
+            rescue Stormpath::Error => error
+              render_view :accounts_new, {
+                :account => account,
+                :flash => { :message => error.message }
+              }
+            end
+          end
+
+        end
+
+      end
     end
   end
 end
