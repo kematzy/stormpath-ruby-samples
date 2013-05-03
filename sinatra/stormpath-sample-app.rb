@@ -20,5 +20,3 @@ end
 
 require_relative 'helpers'
 require_relative 'routes/init'
-
-StormpathSample::App.run!
