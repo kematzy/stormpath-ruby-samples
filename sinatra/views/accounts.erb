@@ -10,16 +10,16 @@
   <tbody>
   <% accounts.each do |account| %>
     <tr>
-      <td><%= account.username %></td>
-      <td><%= account.email %></td>
+      <td><%= account[:username] %></td>
+      <td><%= account[:email] %></td>
       <td>
-        <a class="btn" href="accounts/<%= CGI.escape(account.href.to_s) %>/edit">Edit</a>
+        <a class="btn" href="<%= account[:edit_route] %>">Edit</a>
       </td>
       <td>
-        <form action="/accounts/<%= CGI.escape(account.href.to_s) %>" method='POST'
+        <form action="<%= account[:delete_route] %>" method='POST'
           onsubmit="javascript:return confirm('Are you sure you want to delete this account?');">
           <input type="hidden" name="_method" value="DELETE">
-          <input class="btn" type="submit" value="Delete">
+          <input class="btn" <%= "disabled" unless account[:deletable] %> type="submit" value="Delete">
         </form>
       </td>
     </tr>

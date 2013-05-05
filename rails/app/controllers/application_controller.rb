@@ -1,11 +1,26 @@
+require 'pry'
+require 'pry-debugger'
+
 class ApplicationController < ActionController::Base
+
+  ADMIN_GROUP_NAME = "admin"
+
   protect_from_forgery
 
-  helper_method :logged_in?, :current_user
+  helper_method :logged_in?, :current_user, :is_admin?
 
   def current_user
     @current_user ||= if session[:user_id]
       User.find_by_id session[:user_id]
+    end
+  end
+
+  def is_admin?
+    if session[:user_id] and not @is_admin
+      account = Stormpath::Rails::Client.find_account current_user.stormpath_url
+      @is_admin = account.groups.any? do |group|
+        group.name == ADMIN_GROUP_NAME
+      end
     end
   end
 

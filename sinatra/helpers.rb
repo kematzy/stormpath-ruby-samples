@@ -17,6 +17,10 @@ module Sinatra
         redirect('/accounts') if session[:authenticated]
       end
 
+      def is_admin?()
+        true
+      end
+
     end
   end
 end

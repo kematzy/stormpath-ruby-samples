@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     @current_user = nil
+    @is_admin = nil
     session[:user_id] = nil
     redirect_to new_session_path
   end
