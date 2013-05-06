@@ -14,15 +14,11 @@ module Sinatra
                 :email => account.email,
                 :edit_route => "/accounts/#{CGI.escape(account.href)}/edit",
                 :delete_route => "/accounts/#{CGI.escape(account.href)}",
-                :deletable => !!is_admin?
+                :deletable => is_admin?
               }
             end
 
-            puts accounts.inspect
-
-            render_view :accounts, {
-              :accounts => accounts
-            }
+            render_view :accounts, { :accounts => accounts }
           end
 
           app.get '/accounts/:account_url/edit' do
