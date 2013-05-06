@@ -8,7 +8,17 @@ module Sinatra
           app.get '/accounts' do
             require_logged_in
 
-            render_view :accounts, { :accounts => settings.application.accounts }
+            accounts = settings.application.accounts.map do |account|
+              {
+                :username => account.username,
+                :email => account.email,
+                :edit_route => "/accounts/#{CGI.escape(account.href)}/edit",
+                :delete_route => "/accounts/#{CGI.escape(account.href)}",
+                :deletable => is_admin?
+              }
+            end
+
+            render_view :accounts, { :accounts => accounts }
           end
 
           app.get '/accounts/:account_url/edit' do

@@ -24,8 +24,9 @@ module Sinatra
 
             begin
               authentication_result = settings.application.authenticate_account login_request
-              session[:authenticated] = true
-              session[:email_or_username] = email_or_username
+
+              initialize_session email_or_username, authentication_result.account.href
+
               redirect '/accounts'
             rescue Stormpath::Error => error
               flash[:notice] = error.message
@@ -36,8 +37,8 @@ module Sinatra
           app.delete '/session' do
             require_logged_in
 
-            session.delete(:authenticated)
-            session.delete(:email_or_username)
+            destroy_session
+
             flash[:notice] = 'You have been logged out successfully.'
 
             redirect '/session/new'
