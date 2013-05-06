@@ -15,12 +15,10 @@
       <td><%= user.given_name %></td>
       <td><%= user.surname %></td>
       <td>
-        <%= link_to 'Edit', edit_user_path(user) %>
+        <%= button_to 'Edit', edit_user_path(user), :class => 'btn', :method => :get %>
       </td>
       <td>
-        <% if @delete_enabled %>
-          <%= link_to 'Remove', user, :confirm => 'Are you sure?', :method => :delete %>
-        <% end %>
+        <%= button_to 'Remove', user, :confirm => 'Are you sure?', :method => :delete, :class => 'btn', :disabled => !!!@delete_enabled %>
       </td>
     </tr>
   <% end %>
