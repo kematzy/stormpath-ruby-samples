@@ -14,11 +14,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.create params[:user]
+    @user = User.create params[:user]
 
-    flash[:message] = "Your account has been created. Depending on how you've configured your directory, you may need to check your email and verify the account before logging in."
+    if @user.errors[:base].empty?
+      flash[:message] = "Your account has been created. Depending on how you've configured your directory, you may need to check your email and verify the account before logging in."
+      redirect_to new_session_path
+    else
+      flash[:message] = @user.errors[:base].join("\n")
+      render :new
+    end
 
-    redirect_to new_session_path
   end
 
   def edit
