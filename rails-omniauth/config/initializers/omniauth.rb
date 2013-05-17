@@ -1,3 +1,3 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :stormpath
+  provider :stormpath, '/session/new'
 end
