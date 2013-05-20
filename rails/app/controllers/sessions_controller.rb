@@ -6,8 +6,7 @@ class SessionsController < ApplicationController
 
   def create
     begin
-      stormpath_account = Stormpath::Rails::Client.authenticate_account params[:username_or_email], params[:password]
-      user = User.find_by_stormpath_url stormpath_account.href
+      user = User.authenticate params[:username_or_email], params[:password]
       session[:user_id] = user.id
       redirect_to users_path
     rescue Stormpath::Error => error
