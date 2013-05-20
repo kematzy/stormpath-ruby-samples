@@ -1,0 +1,16 @@
+source 'https://rubygems.org'
+
+gem 'rails', '3.2.13'
+
+gem 'stormpath-sdk', git: 'git://github.com/stormpath/stormpath-sdk-ruby.git', branch: 'development'
+gem 'stormpath-rails', git: 'git://github.com/stormpath/stormpath-rails.git', branch: 'development'
+gem 'omniauth-stormpath', git: 'git://github.com/laser/stormpath-omniauth-rails', branch: 'development'
+
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'sqlite3'
+  gem 'jquery-rails'
+  gem 'capybara'
+  gem 'pry'
+  gem 'pry-debugger'
+end
