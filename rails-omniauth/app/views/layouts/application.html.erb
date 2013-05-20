@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RailsOmniauth</title>
+  <title>Omniauth Integration Sample</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <div>
+  <% if current_user %>
+    Signed in as: <%= current_user.email %>
+    <%= link_to "Sign out", session_path, method: "delete" %>
+  <% end %>
+  </div>
+
+<% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+<% end %>
 
 <%= yield %>
 
