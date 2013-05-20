@@ -1,9 +1,5 @@
 require 'stormpath-rails'
 
-puts "\n==============================="
-puts Stormpath
-puts Stormpath::Rails
-
 class User < ActiveRecord::Base
   include Stormpath::Rails::Account
 
