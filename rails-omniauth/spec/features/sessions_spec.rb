@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Authentication" do
 
-  email = 'test+user@example.com'
+  email = "test#{SecureRandom.hex}@example.com"
   password = 'Succ3ss!'
 
   before(:all) do
@@ -11,9 +11,8 @@ describe "Authentication" do
     @u.password = password
     @u.given_name = 'Given'
     @u.surname = 'Surname'
-    @u.username = 'user_name'
+    @u.username = "test#{SecureRandom.hex}"
 
-    binding.pry
     @u.save
   end
 
