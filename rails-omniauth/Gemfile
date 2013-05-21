@@ -4,7 +4,7 @@ gem 'rails', '3.2.13'
 
 gem 'stormpath-sdk', git: 'git://github.com/stormpath/stormpath-sdk-ruby.git', branch: 'development'
 gem 'stormpath-rails', git: 'git://github.com/stormpath/stormpath-rails.git', branch: 'development'
-gem 'omniauth-stormpath', git: 'git://github.com/laser/stormpath-omniauth-rails', branch: 'development'
+gem 'stormpath-omniauth', git: 'git://github.com/stormpath/stormpath-omniauth', branch: 'development'
 
 group :test, :development do
   gem 'rspec-rails'

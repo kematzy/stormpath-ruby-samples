@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/stormpath/stormpath-rails.git
+  revision: 1d83ba331346ba4eea56af8fb61e5d8d2a65bdc8
+  branch: development
+  specs:
+    stormpath-rails (0.4.4)
+      activesupport
+      stormpath-sdk
+
+GIT
   remote: git://github.com/stormpath/stormpath-sdk-ruby.git
   revision: 8286af0183e39fd882d5b415bb0b338acbbbdfdd
   branch: development
@@ -10,13 +19,6 @@ GIT
       multi_json (>= 1.3.6)
       properties-ruby (~> 0.0.4)
       uuidtools (>= 2.1.3)
-
-PATH
-  remote: /Users/boram/dev/stormpath/stormpath-rails
-  specs:
-    stormpath-rails (0.4.4)
-      activesupport
-      stormpath-sdk
 
 GEM
   remote: https://rubygems.org/

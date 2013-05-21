@@ -1,14 +1,11 @@
 GIT
-  remote: git://github.com/laser/stormpath-omniauth-rails
-  revision: 0f64166b2bd1388c7b6223674c202bd97e8f53f8
+  remote: git://github.com/stormpath/stormpath-omniauth
+  revision: 998145c51fa551a94239e913092b2f3a06ce5c1e
   branch: development
   specs:
-    omniauth-stormpath (0.0.1)
+    stormpath-omniauth (0.0.1)
       bcrypt-ruby (~> 3.0)
       omniauth (~> 1.0)
-      rails (~> 3.2.1)
-      stormpath-rails
-      stormpath-sdk
 
 GIT
   remote: git://github.com/stormpath/stormpath-rails.git
@@ -171,11 +168,11 @@ PLATFORMS
 DEPENDENCIES
   capybara
   jquery-rails
-  omniauth-stormpath!
   pry
   pry-debugger
   rails (= 3.2.13)
   rspec-rails
   sqlite3
+  stormpath-omniauth!
   stormpath-rails!
   stormpath-sdk!
