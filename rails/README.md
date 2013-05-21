@@ -51,7 +51,6 @@ $ bundle install
     ```
     export STORMPATH_API_KEY_FILE_LOCATION=xxx
     export STORMPATH_APPLICATION_URL=aaa
-    export STORMPATH_DIRECTORY_URL=bbb
     ```
 
     There are other ways to pass API information to the Rails client; see the
