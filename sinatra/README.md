@@ -42,7 +42,6 @@ $ bundle install
 
     ```
     export STORMPATH_RUBY_SAMPLE_APPLICATION_URL=REST_URL_OF_APPLICATION_HERE
-    export STORMPATH_RUBY_SAMPLE_DIRECTORY_URL=REST_URL_OF_DIRECTORY_HERE
     export STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION=PATH_TO_AFOREMENTIONED_APIKEY_PROPERTIES_FILE
     ```
 
@@ -105,17 +104,16 @@ class SampleApp < Sinatra::Base
 
   set :client, Stormpath::Client.new({ :api_key_file_location => ENV['STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION'] })
   set :application, settings.client.applications.get(ENV['STORMPATH_RUBY_SAMPLE_APPLICATION_URL'])
-  set :directory, settings.client.directories.get(ENV['STORMPATH_RUBY_SAMPLE_DIRECTORY_URL'])
 
   ...
 
 end
 ```
 
-### Accessing the Stormpath Client, Application, and Directory
+### Accessing the Stormpath Client and Application
 
 When the Sinatra sample application starts up, a request is made to the
-Stormpath API in order to load your application and directory. The resulting
+Stormpath API in order to load your application. The resulting
 Stormpath Resource objects are accessible through the "settings" hash on your
 Sinatra application, like so:
 
@@ -135,7 +133,6 @@ module Sinatra
 
             settings.client # an instance of a Stormpath Client
             settings.application # an instance of the Stormpath Application
-            settings.directory # an instance of the Stormpath Directory
 
             ...
 
