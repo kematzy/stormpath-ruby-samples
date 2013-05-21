@@ -68,7 +68,7 @@ module Sinatra
             account = Stormpath::Resource::Account.new account_params
 
             begin
-              settings.directory.accounts.create account
+              settings.application.accounts.create account
               flash[:notice] = 'Your account was created successfully. Depending on directory configuration, you may need to validate account-creation through email.'
               redirect '/session/new'
             rescue Stormpath::Error => error
