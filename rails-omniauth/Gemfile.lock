@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/stormpath/stormpath-omniauth
-  revision: 998145c51fa551a94239e913092b2f3a06ce5c1e
+  revision: 4d750575f1dd79071a0e82e303e800a62783683f
   branch: development
   specs:
     stormpath-omniauth (0.0.1)
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/stormpath/stormpath-rails.git
-  revision: 953e1338de414d34b9cb103681e10c76a7bf6cbd
+  revision: c3c07c542d4be7c255bcd6ca8fdfe42df5b69688
   branch: development
   specs:
     stormpath-rails (0.4.4)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/stormpath/stormpath-sdk-ruby.git
-  revision: 8286af0183e39fd882d5b415bb0b338acbbbdfdd
+  revision: 8e21a647b2943c1b7a9b4ba688ea1a615f44fee7
   branch: development
   specs:
     stormpath-sdk (0.5.1.SNAPSHOT)
