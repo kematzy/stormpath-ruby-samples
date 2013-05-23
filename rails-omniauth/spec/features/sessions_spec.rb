@@ -24,13 +24,13 @@ describe "Authentication" do
 
     before do
       visit "/auth/stormpath"
-      fill_in "sessions_email_or_username", with: email
+      fill_in "email_or_username", with: email
     end
 
     describe "with valid credentials" do
 
       before do
-        fill_in "sessions_password", with: password
+        fill_in "password", with: password
         click_button "Sign in"
       end
 
@@ -47,7 +47,7 @@ describe "Authentication" do
     describe "without valid credentials" do
 
       before do
-        fill_in "sessions_password", with: "wrongpassword"
+        fill_in "password", with: "wrongpassword"
         click_button "Sign in"
       end
 
@@ -66,8 +66,8 @@ describe "Authentication" do
 
     before do
       visit "/auth/stormpath"
-      fill_in "sessions_email_or_username", with: email
-      fill_in "sessions_password", with: password
+      fill_in "email_or_username", with: email
+      fill_in "password", with: password
       click_button "Sign in"
       click_link "Sign out"
     end
