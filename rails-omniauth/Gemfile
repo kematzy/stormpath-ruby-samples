@@ -7,7 +7,7 @@ gem 'stormpath-rails', git: 'git://github.com/stormpath/stormpath-rails.git', br
 gem 'stormpath-omniauth', git: 'git://github.com/stormpath/stormpath-omniauth', branch: 'development'
 
 group :test, :development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.13.0'
   gem 'sqlite3'
   gem 'jquery-rails'
   gem 'capybara'

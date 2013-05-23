@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/stormpath/stormpath-omniauth
-  revision: 1670709b0975881f2889bf2380ce49ae213ef1b0
+  revision: bfcbb37593d831d5fd159d7df2059453e194eb77
   branch: development
   specs:
     stormpath-omniauth (0.0.1)
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/stormpath/stormpath-rails.git
-  revision: c3c07c542d4be7c255bcd6ca8fdfe42df5b69688
+  revision: fe9097c1c1b640a30f3e789069bae1a5acddb1bf
   branch: development
   specs:
     stormpath-rails (0.4.4)
@@ -171,7 +171,7 @@ DEPENDENCIES
   pry
   pry-debugger
   rails (= 3.2.13)
-  rspec-rails
+  rspec-rails (~> 2.13.0)
   sqlite3
   stormpath-omniauth!
   stormpath-rails!
