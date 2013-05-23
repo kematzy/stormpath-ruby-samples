@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/stormpath/stormpath-omniauth
-  revision: 4d750575f1dd79071a0e82e303e800a62783683f
+  revision: 1670709b0975881f2889bf2380ce49ae213ef1b0
   branch: development
   specs:
     stormpath-omniauth (0.0.1)
