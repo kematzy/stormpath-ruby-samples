@@ -1,3 +1,8 @@
+if ENV['STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION'].nil? &&
+   ENV['STORMPATH_RUBY_SAMPLE_APPLICATION_URL'].nil?
+  raise 'Either STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION or STORMPATH_RUBY_SAMPLE_APPLICATION_URL must be set'
+end
+
 require 'sinatra'
 require 'rack-flash'
 require 'stormpath-sdk'
@@ -7,6 +12,7 @@ require 'pry-debugger'
 
 require_relative 'routes'
 
+binding.pry
 class SampleApp < Sinatra::Base
 
   set :root, File.dirname(__FILE__)
