@@ -1,3 +1,5 @@
+OmniAuth.config.logger = Rails.logger
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :stormpath, :setup => lambda { |env|
     env['omniauth.strategy'].options[:auth_redirect] = '/session/new'
