@@ -18,6 +18,10 @@ class SampleApp < Sinatra::Base
 
   register Sinatra::SampleApp::Routing
 
+  def self.get_application
+    settings.application
+  end
+
   def self.obtain_stormpath_account(email_or_username, password)
     login_request = Stormpath::Authentication::UsernamePasswordRequest.new(email_or_username, password)
     authentication_result = settings.application.authenticate_account login_request
@@ -25,9 +29,9 @@ class SampleApp < Sinatra::Base
   end
 
   use OmniAuth::Builder do
-    provider :stormpath, :setup => lambda { |env|
-      env['omniauth.strategy'].options[:authenticator_method] = SampleApp.method(:obtain_stormpath_account)
-      env['omniauth.strategy'].options[:obtain_uid_method] = Proc.new { |o| o.href }
+    provider :stormpath, setup: -> env {
+      env['omniauth.strategy'].options[:stormpath_application] =
+        ::SampleApp.get_application
     }
   end
 end
