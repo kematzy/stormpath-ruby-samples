@@ -6,6 +6,7 @@ end
 require 'sinatra'
 require 'rack-flash'
 require 'stormpath-sdk'
+require 'cgi'
 
 require_relative 'helpers'
 require_relative 'routes/init'
