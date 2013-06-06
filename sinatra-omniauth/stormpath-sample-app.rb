@@ -12,7 +12,6 @@ require 'pry-debugger'
 
 require_relative 'routes'
 
-binding.pry
 class SampleApp < Sinatra::Base
 
   set :root, File.dirname(__FILE__)
