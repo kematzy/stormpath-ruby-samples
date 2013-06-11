@@ -27,16 +27,23 @@ $ bundle install
 1.  If you have not already done so, register as a developer on
     [Stormpath][stormpath] and set up your API credentials and resources:
 
-    1.  Create a [Stormpath][stormpath] developer account and [create your API Keys][create-api-keys]
-        downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code>
+    1.  Create a [Stormpath][stormpath] developer account and
+        [create your API Keys][create-api-keys] downloading the
+        <code>apiKey.properties</code> file into a <code>.stormpath</code>
         folder under your local home directory.
 
     1.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
-        an [Application Resource][concepts] and a [Directory Resource][concepts].
-        Edit the newly-created Application Resource and add this Directory
-        Resource as a [Login Source][concepts]. This will allow users associated
-        with that Directory Resource to authenticate and have access to that
-        Application Resource.
+        an [Application Resource][concepts]. On the Create New Application
+        screen, make sure the "Create a new directory with this application" box
+        is checked. This will provision a [Directory Resource][concepts] along
+        with your new Application Resource and link the Directory to the
+        Application as a [Login Source][concepts]. This will allow users
+        associated with that Directory Resource to authenticate and have access
+        to that Application Resource.
+
+        It is important to note that although your developer account (step 1)
+        comes with a built-in Application Resource (called "Stormpath") - you
+        will still need to provision a separate Application Resource.
 
     1.  Take note of the _REST URL_ of the Application you just created. Your
         web application will communicate with the Stormpath API in the context
@@ -46,8 +53,8 @@ $ bundle install
 1.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
     ```
-    export STORMPATH_RUBY_SAMPLE_APPLICATION_URL=REST_URL_OF_APPLICATION_HERE
-    export STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION=PATH_TO_AFOREMENTIONED_APIKEY_PROPERTIES_FILE
+    export STORMPATH_API_KEY_FILE_LOCATION=xxx
+    export STORMPATH_APPLICATION_URL=aaa
     ```
 
     There are other ways to pass API information to the SDK client; see the
