@@ -31,12 +31,17 @@ $ bundle install
         downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code>
         folder under your local home directory.
 
-    1.  Create an application and a directory to store your accounts'
-        accounts. Make sure the directory is assigned as a login source
-        to the application.
+    1.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
+        an [Application Resource][concepts] and a [Directory Resource][concepts].
+        Edit the newly-created Application Resource and add this Directory
+        Resource as a [Login Source][concepts]. This will allow users associated
+        with that Directory Resource to authenticate and have access to that
+        Application Resource.
 
-    1.  Take note of the _REST URL_ of the application and of directory
-        you just created.
+    1.  Take note of the _REST URL_ of the Application you just created. Your
+        web application will communicate with the Stormpath API in the context
+        of this one Application Resource (operations such as: user-creation,
+        authentication, etc.)
 
 1.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
@@ -235,3 +240,4 @@ next to each row in the list of accounts.
   [stormpath-admin-login]: http://api.stormpath.com/login
   [create-api-keys]: http://www.stormpath.com/docs/ruby/product-guide#AssignAPIkeys
   [stormpath-sdk]: https://github.com/stormpath/stormpath-sdk-ruby
+  [concepts]: http://www.stormpath.com/docs/stormpath-basics#keyConcepts
