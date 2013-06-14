@@ -1,18 +1,18 @@
 GIT
   remote: git://github.com/stormpath/stormpath-rails.git
-  revision: 7aa6a11cdb1c5b6d58422ed10920b26a007f92f4
+  revision: f98c598ddfe62fa19c92f6f91aebe41b19278927
   branch: development
   specs:
-    stormpath-rails (0.4.4)
+    stormpath-rails (1.0.0.beta)
       activesupport
-      stormpath-sdk
+      stormpath-sdk (= 1.0.0.beta)
 
 GIT
   remote: git://github.com/stormpath/stormpath-sdk-ruby.git
-  revision: d7f6ba8b46fa626be7d86b654d65011c123ee58d
+  revision: 09581e20c55230b9ce0c92e11cd2c6e63c88f162
   branch: development
   specs:
-    stormpath-sdk (1.0.0.alpha)
+    stormpath-sdk (1.0.0.beta)
       activesupport (>= 3.2.8)
       httpclient (>= 2.2.5)
       java_properties
@@ -86,7 +86,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
-    multi_json (1.7.6)
+    multi_json (1.7.7)
     polyglot (0.3.3)
     properties-ruby (0.0.4)
       logeasy (>= 0.0.4)

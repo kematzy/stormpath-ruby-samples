@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'stormpath-sdk', :github => 'stormpath/stormpath-sdk-ruby', :branch => 'development'
+gem 'stormpath-sdk', '1.0.0.beta'
 gem 'sinatra'
 gem 'rack-flash3'

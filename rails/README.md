@@ -28,23 +28,28 @@ $ bundle install
 1.  If you have not already done so, register as a developer on
     [Stormpath][stormpath] and set up your API credentials and resources:
 
-    1.  Create a [Stormpath][stormpath] developer account and [create your API Keys][create-api-keys]
-        downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code>
+    1.  Create a [Stormpath][stormpath] developer account and
+        [create your API Keys][create-api-keys] downloading the
+        <code>apiKey.properties</code> file into a <code>.stormpath</code>
         folder under your local home directory.
 
-    1.  Create an application and a directory to store your accounts'
-        accounts. Make sure the directory is assigned as a login source
-        to the application.
+    1.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
+        an [Application Resource][concepts]. On the Create New Application
+        screen, make sure the "Create a new directory with this application" box
+        is checked. This will provision a [Directory Resource][concepts] along
+        with your new Application Resource and link the Directory to the
+        Application as a [Login Source][concepts]. This will allow users
+        associated with that Directory Resource to authenticate and have access
+        to that Application Resource.
 
-    1.  Take note of the _REST URL_ of the application and of directory
-        you just created.
+        It is important to note that although your developer account (step 1)
+        comes with a built-in Application Resource (called "Stormpath") - you
+        will still need to provision a separate Application Resource.
 
-1.  Run the Rake tasks for creating and migrating your database:
-
-    ```
-    rake db:create
-    rake db:migrate
-    ```
+    1.  Take note of the _REST URL_ of the Application you just created. Your
+        web application will communicate with the Stormpath API in the context
+        of this one Application Resource (operations such as: user-creation,
+        authentication, etc.)
 
 1.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
@@ -55,6 +60,13 @@ $ bundle install
 
     There are other ways to pass API information to the Rails client; see the
     [Stormpath Rails Gem documentation][stormpath-rails-gem] for more info.
+
+1.  Run the Rake tasks for creating and migrating your database:
+
+    ```
+    rake db:create
+    rake db:migrate
+    ```
 
 1.  Run the Rails server:
 
@@ -186,7 +198,7 @@ clicked the verification link in the email-body.
 
 If you wish for that email link to point to your local server - which will then
 use the Stormpath SDK to verify the account - modify "Account Verification Base
-URL" to "http://0.0.0.0:3000/accounts/verify".
+URL" to "http://0.0.0.0:3000/users/verify".
 
 ### Local Password Reset Token Validation
 
@@ -204,7 +216,7 @@ your local server (instead of the Stormpath server):
 1.  Click "Workflows" and then "Show" link next to "Password Reset"
 
 1.  Change the value of "Base URL" to
-    "http://0.0.0.0:3000/password_reset_tokens"
+    "http://0.0.0.0:3000/password-reset"
 
 Now the email a account receives after resetting their password will contain a link
 pointing to a password reset token-verification URL on your system.
@@ -212,9 +224,10 @@ pointing to a password reset token-verification URL on your system.
 ### Group Membership
 
 In order to demonstrate the Stormpath Group functionality, the demo application
-conditionally shows / hides a "delete" link next to each account on the
+conditionally shows / hides a "Remove" button next to each account on the
 accounts-listing page based on the logged-in account's membership in a group named
-"admin".
+"foo". Clicking the "Remove" button next to an account will cause that account
+to be deleted from the system.
 
 If you wish to experiment with group membership:
 
@@ -226,16 +239,16 @@ If you wish to experiment with group membership:
 
 1.  Click "Groups" and then "Create Group"
 
-1.  Name the group "admin"
+1.  Name the group "foo"
 
-1.  From the group-list screen, click the name of the "admin" group
+1.  From the group-list screen, click the name of the "foo" group
 
 1.  Click the "Accounts" tab and then "Assign Accounts"
 
 1.  Select an account and then click "Assign Account"
 
-This account has associated with the "admin" group. Upon logging in to the
-sample application with this account, you will see a new "delete" link appear
+This account has associated with the "foo" group. Upon logging in to the
+sample application with this account, you will see a new "Remove" link appear
 next to each row in the list of accounts.
 
   [rubygems-installation-docs]: http://docs.rubygems.org/read/chapter/3
@@ -243,3 +256,4 @@ next to each row in the list of accounts.
   [stormpath-admin-login]: http://api.stormpath.com/login
   [create-api-keys]: http://www.stormpath.com/docs/ruby/product-guide#AssignAPIkeys
   [stormpath-rails-gem]: https://github.com/stormpath/stormpath-rails
+  [concepts]: http://www.stormpath.com/docs/stormpath-basics#keyConcepts
