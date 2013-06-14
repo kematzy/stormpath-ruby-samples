@@ -1,25 +1,3 @@
-GIT
-  remote: git://github.com/stormpath/stormpath-rails.git
-  revision: f98c598ddfe62fa19c92f6f91aebe41b19278927
-  branch: development
-  specs:
-    stormpath-rails (1.0.0.beta)
-      activesupport
-      stormpath-sdk (= 1.0.0.beta)
-
-GIT
-  remote: git://github.com/stormpath/stormpath-sdk-ruby.git
-  revision: 09581e20c55230b9ce0c92e11cd2c6e63c88f162
-  branch: development
-  specs:
-    stormpath-sdk (1.0.0.beta)
-      activesupport (>= 3.2.8)
-      httpclient (>= 2.2.5)
-      java_properties
-      multi_json (>= 1.3.6)
-      properties-ruby (~> 0.0.4)
-      uuidtools (>= 2.1.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -145,6 +123,16 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    stormpath-rails (1.0.0.beta)
+      activesupport
+      stormpath-sdk (= 1.0.0.beta)
+    stormpath-sdk (1.0.0.beta)
+      activesupport (>= 3.2.8)
+      httpclient (>= 2.2.5)
+      java_properties
+      multi_json (>= 1.3.6)
+      properties-ruby (~> 0.0.4)
+      uuidtools (>= 2.1.3)
     thor (0.18.1)
     tilt (1.4.1)
     treetop (1.4.14)
@@ -167,6 +155,5 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   sqlite3
-  stormpath-rails!
-  stormpath-sdk!
+  stormpath-rails (= 1.0.0.beta)
   uglifier (>= 1.0.3)
