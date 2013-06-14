@@ -1,0 +1,60 @@
+body {
+  text-align: center;
+}
+
+form {
+  margin: 0;
+}
+
+.navbar .navbar-inner .logout {
+  position: absolute;
+  right: 20px;
+}
+
+.alert {
+  padding: 8px 14px;
+  margin: 0 auto;
+  width: 610px;
+}
+
+.page-content {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  margin: 0 auto;
+  margin: 15px 0;
+  padding: 69px 19px 14px;
+  position: relative;
+  text-align: left;
+  width: 600px;
+}
+
+.page-content h1 {
+  -moz-border-radius: 4px 0 4px 0;
+  -webkit-border-radius: 4px 0 4px 0;
+  background-color: #f5f5f5;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid #ddd;
+  color: #9da0a4;
+  font-size: 12px;
+  font-weight: bold;
+  left: -1px;
+  line-height: 20px;
+  margin: 0;
+  padding: 3px 7px;
+  position: absolute;
+  right: -1px;
+  top: -1px;
+}
+
+.page-content .sub-actions {
+  float: right;
+}
+
+input[type='submit'].btn {
+  height: 30px;
+  padding: 4px 12px;
+}

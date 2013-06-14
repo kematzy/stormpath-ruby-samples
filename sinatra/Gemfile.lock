@@ -1,0 +1,39 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (3.2.13)
+      i18n (= 0.6.1)
+      multi_json (~> 1.0)
+    httpclient (2.3.3)
+    i18n (0.6.1)
+    java_properties (0.0.4)
+    logeasy (0.0.8)
+    multi_json (1.7.6)
+    properties-ruby (0.0.4)
+      logeasy (>= 0.0.4)
+    rack (1.5.2)
+    rack-flash3 (1.0.3)
+      rack
+    rack-protection (1.5.0)
+      rack
+    sinatra (1.4.3)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    stormpath-sdk (1.0.0.beta)
+      activesupport (>= 3.2.8)
+      httpclient (>= 2.2.5)
+      java_properties
+      multi_json (>= 1.3.6)
+      properties-ruby (~> 0.0.4)
+      uuidtools (>= 2.1.3)
+    tilt (1.4.1)
+    uuidtools (2.1.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rack-flash3
+  sinatra
+  stormpath-sdk (= 1.0.0.beta)

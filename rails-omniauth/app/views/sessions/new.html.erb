@@ -1,0 +1,16 @@
+<h1>Sign in</h1>
+
+<%= form_tag("/auth/stormpath/callback") do %>
+  <div class="field">
+    <%= label_tag :email_or_username %><br />
+    <%= text_field_tag :email_or_username %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Sign in" %>
+  </div>
+<% end %>
+

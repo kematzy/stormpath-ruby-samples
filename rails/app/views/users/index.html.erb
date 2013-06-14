@@ -1,0 +1,26 @@
+<h1>User List</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Given Name</th>
+      <th>Surname</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.given_name %></td>
+      <td><%= user.surname %></td>
+      <td>
+        <%= button_to 'Edit', edit_user_path(user), :class => 'btn', :method => :get %>
+      </td>
+      <td>
+        <%= button_to 'Remove', user, :confirm => 'Are you sure?', :method => :delete, :class => 'btn', :disabled => !!!@delete_enabled %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

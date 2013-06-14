@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/stormpath.css">
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="/">Stormpath <% if session[:display_name] %>>> <%= session[:display_name] %><% end %></a>
+        <% if is_authenticated? %>
+          <form method="post" action="/session">
+            <input class="btn logout" type="submit" value="log out">
+            <input type="hidden" value="DELETE" name="_method">
+          </form>
+        <% end %>
+      </div>
+    </div>
+    <% if flash[:notice] %>
+      <div class="alert"><%= flash[:notice] %></div>
+    <% end %>
+    <div class="page-content">
+      <%= yield %>
+    </div>
+  </body>
+</html>

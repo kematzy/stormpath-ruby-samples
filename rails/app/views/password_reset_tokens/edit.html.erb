@@ -1,0 +1,15 @@
+<h1>Change Your Password</h1>
+
+<%= form_for @user, :html => { :class => "form-horizontal" }, :url => update_password_path(@token) do |f| %>
+  <div class="control-group">
+    <%= label_tag :password, nil, class: 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :placeholder => 'Password' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit 'Save', :class => 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

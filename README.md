@@ -1,15 +1,25 @@
-stormpath-ruby-samples
-======================
+# Stormpath Ruby Examples
 
-This is a little quickstart command line program that will show you how to create a Stormpath SDK client using a Stormpath API Key file and communicate with the Stormpath REST API.
+Stormpath is the first easy, secure user management and authentication service
+for developers. This project brings you several sample applications that you can
+use as a guide to get you started with Stormpath:
 
-To run this sample, you will need the Stormpath Ruby SDK gem installed on your system.  You can install it via the following command:
+1.  A reference web application built with Sinatra, demonstrating how the
+    [Stormpath Ruby SDK][stormpath-sdk] allows you to easily interact with the
+    Stormpath API.
 
-    gem install stormpath-sdk
+1.  A Rails web application featuring lazy-loaded, Stormpath-augmented user
+    models. Log in, create users, modify them with complete source code to
+    get you up and running in minutes. Uses the
+    [Stormpath Rails gem][stormpath-rails] to link your models to resources in
+    the Stormpath system.
 
-Then, in the cloned project:
+1.  An example of using the [Stormpath OmniAuth Strategy][stormpath-omniauth]
+    in a basic Sinatra application.
 
-    cd bin/
-    ruby stormpath.rb file ~/.stormpath/your_stormpath_api_key.yml -o tenant
+1.  An example of using the [Stormpath OmniAuth Strategy][stormpath-omniauth]
+    in a basic application built with Rails.
 
-This will print out your Tenant data (e.g. name, link to applications and directories).  If you see your Tenant's @properties printed, you've successfully communicated with Stormpath via the Ruby SDK!
+  [stormpath-omniauth]: https://github.com/stormpath/stormpath-omniauth
+  [stormpath-sdk]: https://github.com/stormpath/stormpath-sdk-ruby
+  [stormpath-rails]: https://github.com/stormpath/stormpath-rails
