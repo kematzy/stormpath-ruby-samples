@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :given_name, :surname, :username
 
   def self.from_omniauth(auth)
-    find_by_stormpath_url(auth["uid"])
+    where(stormpath_url: auth["uid"]).first
   end
 end

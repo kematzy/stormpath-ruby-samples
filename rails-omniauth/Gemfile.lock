@@ -1,34 +1,3 @@
-GIT
-  remote: git://github.com/stormpath/stormpath-omniauth
-  revision: bfcbb37593d831d5fd159d7df2059453e194eb77
-  branch: development
-  specs:
-    stormpath-omniauth (0.0.1)
-      bcrypt-ruby (~> 3.0)
-      omniauth (~> 1.0)
-
-GIT
-  remote: git://github.com/stormpath/stormpath-rails.git
-  revision: fe9097c1c1b640a30f3e789069bae1a5acddb1bf
-  branch: development
-  specs:
-    stormpath-rails (0.4.4)
-      activesupport
-      stormpath-sdk
-
-GIT
-  remote: git://github.com/stormpath/stormpath-sdk-ruby.git
-  revision: 8e21a647b2943c1b7a9b4ba688ea1a615f44fee7
-  branch: development
-  specs:
-    stormpath-sdk (0.5.1.SNAPSHOT)
-      activesupport (>= 3.2.8)
-      httpclient (>= 2.2.5)
-      java_properties
-      multi_json (>= 1.3.6)
-      properties-ruby (~> 0.0.4)
-      uuidtools (>= 2.1.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -82,12 +51,12 @@ GEM
     diff-lcs (1.2.4)
     erubis (2.7.0)
     hashie (2.0.5)
-    hike (1.2.2)
+    hike (1.2.3)
     httpclient (2.3.3)
     i18n (0.6.1)
     java_properties (0.0.4)
     journey (1.0.4)
-    jquery-rails (2.2.1)
+    jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
@@ -97,8 +66,10 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
-    multi_json (1.7.3)
-    nokogiri (1.5.9)
+    mini_portile (0.5.0)
+    multi_json (1.7.7)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
@@ -156,9 +127,23 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    stormpath-omniauth (1.0.0.beta)
+      bcrypt-ruby (~> 3.0)
+      omniauth (~> 1.0)
+      stormpath-sdk (= 1.0.0.beta)
+    stormpath-rails (1.0.0.beta)
+      activesupport
+      stormpath-sdk (= 1.0.0.beta)
+    stormpath-sdk (1.0.0.beta)
+      activesupport (>= 3.2.8)
+      httpclient (>= 2.2.5)
+      java_properties
+      multi_json (>= 1.3.6)
+      properties-ruby (~> 0.0.4)
+      uuidtools (>= 2.1.3)
     thor (0.18.1)
     tilt (1.4.1)
-    treetop (1.4.12)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
@@ -181,8 +166,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rspec-rails (~> 2.13.0)
   sqlite3
-  stormpath-omniauth!
-  stormpath-rails!
-  stormpath-sdk!
+  stormpath-omniauth (= 1.0.0.beta)
+  stormpath-rails (= 1.0.0.beta)
   vcr
   webmock
