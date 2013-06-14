@@ -12,6 +12,9 @@ group :test, :development do
   gem 'capybara'
   gem 'pry'
   gem 'pry-debugger'
-  gem 'vcr'
+end
+
+group :test do
   gem 'webmock'
+  gem 'vcr'
 end
