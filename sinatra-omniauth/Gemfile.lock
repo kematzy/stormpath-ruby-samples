@@ -1,18 +1,19 @@
 GIT
   remote: git://github.com/stormpath/stormpath-omniauth
-  revision: bfcbb37593d831d5fd159d7df2059453e194eb77
+  revision: 03e9ef8176ff46b4ad849d48b558264deaefc892
   branch: development
   specs:
-    stormpath-omniauth (0.0.1)
+    stormpath-omniauth (1.0.0.beta.2)
       bcrypt-ruby (~> 3.0)
       omniauth (~> 1.0)
+      stormpath-sdk (= 1.0.0.beta.2)
 
 GIT
   remote: git://github.com/stormpath/stormpath-sdk-ruby.git
-  revision: 8e21a647b2943c1b7a9b4ba688ea1a615f44fee7
+  revision: 9fd50482fba10474071b257a0fdc62af4bda0d17
   branch: development
   specs:
-    stormpath-sdk (0.5.1.SNAPSHOT)
+    stormpath-sdk (1.0.0.beta.2)
       activesupport (>= 3.2.8)
       httpclient (>= 2.2.5)
       java_properties
@@ -23,25 +24,30 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (3.2.13)
-      i18n (= 0.6.1)
-      multi_json (~> 1.0)
-    bcrypt-ruby (3.0.1)
+    activesupport (4.0.0)
+      i18n (~> 0.6, >= 0.6.4)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
+    atomic (1.1.12)
+    bcrypt-ruby (3.1.1)
     coderay (1.0.9)
     columnize (0.3.6)
-    debugger (1.6.0)
+    debugger (1.6.1)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.1)
+      debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.2)
+    debugger-ruby_core_source (1.2.3)
     hashie (2.0.5)
-    httpclient (2.3.3)
-    i18n (0.6.1)
+    httpclient (2.3.4.1)
+    i18n (0.6.5)
     java_properties (0.0.4)
     logeasy (0.0.8)
-    method_source (0.8.1)
-    multi_json (1.7.3)
+    method_source (0.8.2)
+    minitest (4.7.5)
+    multi_json (1.7.9)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
@@ -59,12 +65,15 @@ GEM
       rack
     rack-protection (1.5.0)
       rack
-    sinatra (1.4.2)
-      rack (~> 1.5, >= 1.5.2)
+    sinatra (1.4.3)
+      rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    slop (3.4.5)
+    slop (3.4.6)
+    thread_safe (0.1.2)
+      atomic
     tilt (1.4.1)
+    tzinfo (0.3.37)
     uuidtools (2.1.4)
 
 PLATFORMS
