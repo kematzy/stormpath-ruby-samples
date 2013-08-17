@@ -30,14 +30,14 @@ $ bundle install
         downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code>
         folder under your local home directory.
 
-    1.  Create an application and a directory to store your accounts'
+    2.  Create an application and a directory to store your accounts'
         accounts. Make sure the directory is assigned as a login source
         to the application.
 
-    1.  Take note of the _REST URL_ of the application and of directory
+    3.  Take note of the _REST URL_ of the application and of directory
         you just created.
 
-1.  Set ENV variables as follows (perhaps in ~/.bashrc):
+2.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
     ```
     export STORMPATH_RUBY_SAMPLE_APPLICATION_URL=REST_URL_OF_APPLICATION_HERE
@@ -47,7 +47,7 @@ $ bundle install
     There are other ways to pass API information to the SDK client; see the
     [Stormpath SDK documentation][stormpath-sdk] for more info.
 
-1.  Run the application with Rack (installed by Bundler):
+3.  Run the application with Rack (installed by Bundler):
 
     ```
     $ rackup config.ru
@@ -61,7 +61,7 @@ $ bundle install
     [2013-05-03 11:38:19] INFO  WEBrick::HTTPServer#start: pid=9304 port=9292
     ```
 
-1.  Visit the now-running site in your browser at http://0.0.0.0:9292
+4.  Visit the now-running site in your browser at http://0.0.0.0:9292
 
   [rubygems-installation-docs]: http://docs.rubygems.org/read/chapter/3
   [stormpath]: http://stormpath.com/
