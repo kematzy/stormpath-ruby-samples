@@ -97,6 +97,11 @@ $ bundle install
 
 1.  Visit the now-running site in your browser at http://0.0.0.0:3000
 
+		Note: You will need to first create a user with the application before being able
+		before being able to authenticate that user. Users existing in your Stormpath database
+		already will not be automatically propagated to the sample app's internal database.
+		This is merely a limitation of the sample app and not of Stormpath's SDKs.
+
 ## Common Use Cases
 
 ### User Creation

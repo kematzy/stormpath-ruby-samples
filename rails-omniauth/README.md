@@ -31,9 +31,11 @@ $ bundle install
         folder under your local home directory.
 
     1.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
-        an [Application Resource][concepts]. On the Create New Application
-        screen, make sure the "Create a new directory with this application" box
-        is checked. This will provision a [Directory Resource][concepts] along
+        an [Application Resource][concepts]. Ensure that this is a new application and 
+        not the default administrator one that is created when you create your Stormpath account.
+        
+        On the Create New Application screen, make sure the "Create a new directory 
+        with this application" box is checked. This will provision a [Directory Resource][concepts] along
         with your new Application Resource and link the Directory to the
         Application as a [Login Source][concepts]. This will allow users
         associated with that Directory Resource to authenticate and have access
