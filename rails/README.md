@@ -63,11 +63,7 @@ $ bundle install
     There are other ways to pass API information to the Rails client; see the
     [Stormpath Rails Gem documentation][stormpath-rails-gem] for more info.
 
-1.	Ensure that you have a Rails app established or point to a new one:
-
-	```
-	rails new App
-	```
+1.	Navigate to the directory of the sample app (e.g., cd ~/stormpath-ruby-samples/rails/)
 
 1.  Run the Rake tasks for creating and migrating your database:
 

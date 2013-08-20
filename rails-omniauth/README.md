@@ -90,6 +90,7 @@ $ bundle install
 
     You should see a sign in form. You can log in and out of Stormpath using the
     credentials for an account associated with <code>STORMPATH_APPLICATION_URL</code>.
+    Note that you will need to have created a user in this directory before hand. 
 
 #### Notes
 
