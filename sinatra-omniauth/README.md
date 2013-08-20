@@ -26,18 +26,32 @@ $ bundle install
 1.  If you have not already done so, register as a developer on
     [Stormpath][stormpath] and set up your API credentials and resources:
 
-    1.  Create a [Stormpath][stormpath] developer account and [create your API Keys][create-api-keys]
-        downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code>
+    1.  Create a [Stormpath][stormpath] developer account and
+        [create your API Keys][create-api-keys] downloading the
+        <code>apiKey.properties</code> file into a <code>.stormpath</code>
         folder under your local home directory.
 
-    1.  Create an application and a directory to store your accounts'
-        accounts. Make sure the directory is assigned as a login source
-        to the application.
+    1.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
+        an [Application Resource][concepts]. Ensure that this is a new application and 
+        not the default administrator one that is created when you create your Stormpath account.
+        
+        On the Create New Application screen, make sure the "Create a new directory 
+        with this application" box is checked. This will provision a [Directory Resource][concepts] along
+        with your new Application Resource and link the Directory to the
+        Application as a [Login Source][concepts]. This will allow users
+        associated with that Directory Resource to authenticate and have access
+        to that Application Resource.
 
-    1.  Take note of the _REST URL_ of the application and of directory
-        you just created.
+        It is important to note that although your developer account (step 1)
+        comes with a built-in Application Resource (called "Stormpath") - you
+        will still need to provision a separate Application Resource.
 
-1.  Set ENV variables as follows (perhaps in ~/.bashrc):
+    1.  Take note of the _REST URL_ of the Application you just created. Your
+        web application will communicate with the Stormpath API in the context
+        of this one Application Resource (operations such as: user-creation,
+        authentication, etc.)
+
+2.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
     ```
     export STORMPATH_RUBY_SAMPLE_APPLICATION_URL=REST_URL_OF_APPLICATION_HERE
@@ -47,7 +61,7 @@ $ bundle install
     There are other ways to pass API information to the SDK client; see the
     [Stormpath SDK documentation][stormpath-sdk] for more info.
 
-1.  Run the application with Rack (installed by Bundler):
+3.  Run the application with Rack (installed by Bundler):
 
     ```
     $ rackup config.ru
@@ -61,7 +75,7 @@ $ bundle install
     [2013-05-03 11:38:19] INFO  WEBrick::HTTPServer#start: pid=9304 port=9292
     ```
 
-1.  Visit the now-running site in your browser at http://0.0.0.0:9292
+4.  Visit the now-running site in your browser at http://0.0.0.0:9292
 
   [rubygems-installation-docs]: http://docs.rubygems.org/read/chapter/3
   [stormpath]: http://stormpath.com/
