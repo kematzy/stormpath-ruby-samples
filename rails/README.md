@@ -33,7 +33,7 @@ $ bundle install
         <code>apiKey.properties</code> file into a <code>.stormpath</code>
         folder under your local home directory.
 
-    1.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
+    2.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
         an [Application Resource][concepts]. Ensure that this is a new application and 
         not the default administrator one that is created when you create your Stormpath account.
         
@@ -48,12 +48,12 @@ $ bundle install
         comes with a built-in Application Resource (called "Stormpath") - you
         will still need to provision a separate Application Resource.
 
-    1.  Take note of the _REST URL_ of the Application you just created. Your
+    3.  Take note of the _REST URL_ of the Application you just created. Your
         web application will communicate with the Stormpath API in the context
         of this one Application Resource (operations such as: user-creation,
         authentication, etc.)
 
-1.  Set ENV variables as follows (perhaps in ~/.bashrc):
+2.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
     ```
     export STORMPATH_API_KEY_FILE_LOCATION=xxx
@@ -63,16 +63,16 @@ $ bundle install
     There are other ways to pass API information to the Rails client; see the
     [Stormpath Rails Gem documentation][stormpath-rails-gem] for more info.
 
-1.	Navigate to the directory of the sample app (e.g., cd ~/stormpath-ruby-samples/rails/)
+3.	Navigate to the directory of the sample app (e.g., cd ~/stormpath-ruby-samples/rails/)
 
-1.  Run the Rake tasks for creating and migrating your database:
+4.  Run the Rake tasks for creating and migrating your database:
 
     ```
     rake db:create
     rake db:migrate
     ```
 
-1.  Run the Rails server:
+5.  Run the Rails server:
 
     ```
     $ rails s
@@ -91,12 +91,9 @@ $ bundle install
     [2013-05-03 15:01:54] INFO  WEBrick::HTTPServer#start: pid=11614 port=3000
     ```
 
-1.  Visit the now-running site in your browser at http://0.0.0.0:3000
+6.  Visit the now-running site in your browser at http://0.0.0.0:3000
 
-		Note: You will need to first create a user with the application before being able
-		before being able to authenticate that user. Users existing in your Stormpath database
-		already will not be automatically propagated to the sample app's internal database.
-		This is merely a limitation of the sample app and not of Stormpath's SDKs.
+Note: You will need to first create a user with the application before being able to authenticate that user. Users existing in your Stormpath database already will not be automatically propagated to the sample app's internal database. This is merely a limitation of the sample app and not of Stormpath's SDKs.
 
 ## Common Use Cases
 
@@ -201,20 +198,13 @@ To enable post-creation verififation for a directory:
 1.  Finally, click the box next to "Require newly registered accounts to verify
     their email address."
 
-Now account-creation will prompt an email to be sent to the email address attached
-to that account. You will not be able to log in with that account until they've
-clicked the verification link in the email-body.
+After creating an account, an email will be sent to the email address specified during creation. This email contains a verification link which must be clicked before the account can authenticate successfully.
 
-If you wish for that email link to point to your local server - which will then
-use the Stormpath SDK to verify the account - modify "Account Verification Base
-URL" to "http://0.0.0.0:3000/users/verify".
+If you wish for that email link to point to your local server - which will then use the Stormpath SDK to verify the account - modify "Account Verification Base URL" to "http://0.0.0.0:3000/users/verify".
 
 ### Local Password Reset Token Validation
 
-It is possible to configure a Stormpath directory in such a way that when accounts
-reset their password that the email they receive points to a token-verification
-URL on your local server. If you wish to configure the directory to point to
-your local server (instead of the Stormpath server):
+It is possible to configure a Stormpath directory in such a way that when accounts reset their password that the email they receive points to a token-verification URL on your local server. If you wish to configure the directory to point to your local server (instead of the Stormpath server):
 
 1.  Head to the [Stormpath Admin UI][stormpath-admin-login], log in, and click
     "Directories."
@@ -227,16 +217,12 @@ your local server (instead of the Stormpath server):
 1.  Change the value of "Base URL" to
     "http://0.0.0.0:3000/password-reset"
 
-Now the email a account receives after resetting their password will contain a link
+Now, the email an account receives after resetting their password will contain a link
 pointing to a password reset token-verification URL on your system.
 
 ### Group Membership
 
-In order to demonstrate the Stormpath Group functionality, the demo application
-conditionally shows / hides a "Remove" button next to each account on the
-accounts-listing page based on the logged-in account's membership in a group named
-"foo". Clicking the "Remove" button next to an account will cause that account
-to be deleted from the system.
+In order to demonstrate the Stormpath "Group" functionality, the demo application conditionally shows / hides a "Remove" button next to each account on the accounts-listing page based on the logged-in account's membership in a group named "foo". Clicking the "Remove" button next to an account will cause that account to be deleted from the system.
 
 If you wish to experiment with group membership:
 
@@ -256,7 +242,7 @@ If you wish to experiment with group membership:
 
 1.  Select an account and then click "Assign Account"
 
-This account has associated with the "foo" group. Upon logging in to the
+This account has now been associated with the "foo" group. Upon logging in to the
 sample application with this account, you will see a new "Remove" link appear
 next to each row in the list of accounts.
 
