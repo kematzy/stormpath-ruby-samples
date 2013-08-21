@@ -20,6 +20,13 @@ Then, install dependencies using Bundler:
 $ bundle install
 ```
 
+Make sure you have both stormpath-sdk and stormpath-omniauth installed by running `bundle list` or `gem list`. If you don't, manually add them with the following commands:
+
+```
+$ gem install stormpath-sdk --pre
+$ gem install stormpath-omniauth --pre
+```
+
 ## Quickstart Guide
 
 1.  If you have not already done so, register as a developer on
