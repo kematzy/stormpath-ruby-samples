@@ -222,7 +222,7 @@ pointing to a password reset token-verification URL on your system.
 
 ### Group Membership
 
-In order to demonstrate the Stormpath "Group" functionality, the demo application conditionally shows / hides a "Remove" button next to each account on the accounts-listing page based on the logged-in account's membership in a group named "foo". Clicking the "Remove" button next to an account will cause that account to be deleted from the system.
+In order to demonstrate the Stormpath "Group" functionality, the demo application conditionally shows / hides a "Remove" button next to each account on the accounts-listing page based on the logged-in account's membership in a group named "foo". This is to say that if the account authenticated to the app is a member of group "foo", that account will be able to click the "Remove" buttons, which will delete the account specifed.
 
 If you wish to experiment with group membership:
 
