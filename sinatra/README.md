@@ -22,6 +22,12 @@ Then, install dependencies using Bundler:
 $ bundle install
 ```
 
+Make sure you have both stormpath-sdk \ installed by running `bundle list` or `gem list`. If you don't, manually add them with the following commands:
+
+```
+$ gem install stormpath-sdk --pre
+```
+
 ## Quickstart Guide
 
 1.  If you have not already done so, register as a developer on
@@ -32,7 +38,7 @@ $ bundle install
         <code>apiKey.properties</code> file into a <code>.stormpath</code>
         folder under your local home directory.
 
-    1.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
+    2.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
         an [Application Resource][concepts]. Ensure that this is a new application and 
         not the default administrator one that is created when you create your Stormpath account.
         
@@ -47,12 +53,12 @@ $ bundle install
         comes with a built-in Application Resource (called "Stormpath") - you
         will still need to provision a separate Application Resource.
 
-    1.  Take note of the _REST URL_ of the Application you just created. Your
+    3.  Take note of the _REST URL_ of the Application you just created. Your
         web application will communicate with the Stormpath API in the context
         of this one Application Resource (operations such as: user-creation,
         authentication, etc.)
 
-1.  Set ENV variables as follows (perhaps in ~/.bashrc):
+2.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
     ```
     export STORMPATH_API_KEY_FILE_LOCATION=xxx
@@ -62,7 +68,7 @@ $ bundle install
     There are other ways to pass API information to the SDK client; see the
     [Stormpath SDK documentation][stormpath-sdk] for more info.
 
-1.  Run the application with Rack (installed by Bundler):
+3.  Run the application with Rack (installed by Bundler):
 
     ```
     $ rackup config.ru
@@ -76,12 +82,9 @@ $ bundle install
     [2013-05-03 11:38:19] INFO  WEBrick::HTTPServer#start: pid=9304 port=9292
     ```
 
-1.  Visit the now-running site in your browser at http://0.0.0.0:9292
+4.  Visit the now-running site in your browser at http://0.0.0.0:9292
 
-		Note: You will need to first create a user with the application before being able
-		before being able to authenticate that user. Users existing in your Stormpath database
-		already will not be automatically propagated to the sample app's internal database.
-		This is merely a limitation of the sample app and not of Stormpath's SDKs.
+Note: You will need to first create a user with the application before being able to authenticate that user. Users existing in your Stormpath database already will not be automatically propagated to the sample app's internal database. This is merely a limitation of the sample app and not of Stormpath's SDKs.
 
 ## Common Use Cases
 
@@ -94,11 +97,11 @@ To create your first account:
 
 1.  Fire up the demo application, as explained in the Quickstart Guide
 
-1.  Open http://0.0.0.0:9292 in your web browser
+2.  Open http://0.0.0.0:9292 in your web browser
 
-1.  Click the "Don't have an account?" link
+3.  Click the "Don't have an account?" link
 
-1.  Complete the form and click the "Save" button
+4.  Complete the form and click the "Save" button
 
 Congratulations! Your first account has been created. Assuming all has gone well,
 you should be able to log in to the sample application using its email and
@@ -179,21 +182,19 @@ To enable post-creation verififation for a directory:
 1.  Head to the [Stormpath Admin UI][stormpath-admin-login], log in, and click
     "Directories."
 
-1.  From there, click the directory whose REST URL you have used to configure
+2.  From there, click the directory whose REST URL you have used to configure
     your application (see Quickstart Guide):
 
-1.  Click "Workflows" and then "Show" link next to "Account Registration and
+3.  Click "Workflows" and then "Show" link next to "Account Registration and
     Verification".
 
-1.  Click the box next to "Enable Registration and Verification
+4.  Click the box next to "Enable Registration and Verification
     Workflow."
 
-1.  Finally, click the box next to "Require newly registered accounts to verify
+5.  Finally, click the box next to "Require newly registered accounts to verify
     their email address."
 
-Now account-creation will prompt an email to be sent to the email address attached
-to that account. You will not be able to log in with that account until they've
-clicked the verification link in the email-body.
+After creating an account, an email will be sent to the email address specified during creation. This email contains a verification link which must be clicked before the account can authenticate successfully.
 
 If you wish for that email link to point to your local server - which will then
 use the Stormpath SDK to verify the account - modify "Account Verification Base
@@ -209,12 +210,12 @@ your local server (instead of the Stormpath server):
 1.  Head to the [Stormpath Admin UI][stormpath-admin-login], log in, and click
     "Directories."
 
-1.  From there, click the directory whose REST URL you have used to configure
+2.  From there, click the directory whose REST URL you have used to configure
     your application (see Quickstart Guide):
 
-1.  Click "Workflows" and then "Show" link next to "Password Reset"
+3.  Click "Workflows" and then "Show" link next to "Password Reset"
 
-1.  Change the value of "Base URL" to
+4.  Change the value of "Base URL" to
     "http://0.0.0.0:9292/password_reset_tokens"
 
 Now the email a account receives after resetting their password will contain a link
@@ -245,9 +246,7 @@ If you wish to experiment with group membership:
 
 1.  Select an account and then click "Assign Account"
 
-This account has associated with the "admin" group. Upon logging in to the
-sample application with this account, you will see a new "delete" link appear
-next to each row in the list of accounts.
+This account has now been associated with the "admin" group. Upon logging in to the sample application with this account, you will see a new "Delete" button appear next to each row in the list of accounts.
 
   [rubygems-installation-docs]: http://docs.rubygems.org/read/chapter/3
   [stormpath]: http://stormpath.com/
