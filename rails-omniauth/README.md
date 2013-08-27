@@ -39,17 +39,18 @@ $ bundle install
     export STORMPATH_APPLICATION_URL=aaa
     ```
 
-    There are other ways to pass API information to the Rails client; see the
-    [Stormpath Rails Gem documentation][stormpath-rails-gem] for more info.
+    There are other ways to pass API information to the Rails client; see the [Stormpath Rails Gem documentation][stormpath-rails-gem] for more info.  
 
-3.  Run the Rake tasks for creating and migrating your database:
+3.  CD into the `rails-omniauth' directory.
+
+4.  Run the Rake tasks for creating and migrating your database:
 
     ```
     rake db:create
     rake db:migrate
     ```
 
-4.  Run the Rails server:
+5.  Run the Rails server:
 
     ```
     $ rails s
@@ -68,17 +69,17 @@ $ bundle install
     [2013-05-03 15:01:54] INFO  WEBrick::HTTPServer#start: pid=11614 port=3000
     ```
 
-5.  Visit the now-running site in your browser at <code>http://localhost:3000</code>.
+6.  Visit the now-running site in your browser at <code>http://localhost:3000</code>.
 
     You should see a sign in form. You can log in and out of Stormpath using the credentials for an account associated with <code>STORMPATH_APPLICATION_URL</code>. Note that you will need to have created a user in this directory before hand. 
 
 #### Notes
 
-The purpose of this app is to exercise Omniauth authentication only. However, keep in mind that you can do anything provided to you by <code>stormpath-rails</code>.
+The purpose of this app is to exercise Omniauth authentication only. However, keep in mind that you can do anything provided to you by [stormpath-rails][https://github.com/stormpath/stormpath-rails].
 
 Since the <code>User</code> model in this app mixes in <code>Stormpath::Rails::Account</code>, the following is possible:
 
-    ```ruby
+    ```
     User.authenticate 'foo@example.com', 'secret-password'
     User.send_password_reset_email 'foo@example.com'
     ```
