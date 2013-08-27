@@ -1,7 +1,6 @@
 # Ruby Web App Example (Sinatra)
 
-This is a basic web application that will show you how to use the Stormpath
-OmniAuth Strategy in a Sinatra context.
+This is a basic web application that will show you how to use the Stormpath OmniAuth Strategy in a Sinatra context.
 
 ## Installation
 
@@ -23,33 +22,17 @@ $ bundle install
 
 ## Quickstart Guide
 
-1.  If you have not already done so, register as a developer on
-    [Stormpath][stormpath] and set up your API credentials and resources:
+1.  If you have not already done so, register as a developer on [Stormpath][stormpath] and set up your API credentials and resources:
 
-    1.  Create a [Stormpath][stormpath] developer account and
-        [create your API Keys][create-api-keys] downloading the
-        <code>apiKey.properties</code> file into a <code>.stormpath</code>
-        folder under your local home directory.
+    1.  Create a [Stormpath][stormpath] developer account and [create your API Keys][create-api-keys] downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code> folder under your local home directory.
 
-    1.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself
-        an [Application Resource][concepts]. Ensure that this is a new application and 
-        not the default administrator one that is created when you create your Stormpath account.
+    2.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself an [Application Resource][concepts]. Ensure that this is a new application and not the default administrator one that is created when you create your Stormpath account.
         
-        On the Create New Application screen, make sure the "Create a new directory 
-        with this application" box is checked. This will provision a [Directory Resource][concepts] along
-        with your new Application Resource and link the Directory to the
-        Application as a [Login Source][concepts]. This will allow users
-        associated with that Directory Resource to authenticate and have access
-        to that Application Resource.
+    On the Create New Application screen, make sure the "Create a new directory  with this application" box is checked. This will provision a [Directory Resource][concepts] along with your new Application Resource and link the Directory to the Application as an [Account Store][concepts]. This will allow users associated with that Directory Resource to authenticate and have access to that Application Resource.
 
-        It is important to note that although your developer account (step 1)
-        comes with a built-in Application Resource (called "Stormpath") - you
-        will still need to provision a separate Application Resource.
+    It is important to note that although your developer account (step 1) comes with a built-in Application Resource (called "Stormpath") - you will still need to provision a separate Application Resource.
 
-    1.  Take note of the _REST URL_ of the Application you just created. Your
-        web application will communicate with the Stormpath API in the context
-        of this one Application Resource (operations such as: user-creation,
-        authentication, etc.)
+    3.  Take note of the _REST URL_ of the Application you just created. Your web application will communicate with the Stormpath API in the context of this one Application Resource (operations such as: user-creation, authentication, etc.)
 
 2.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
