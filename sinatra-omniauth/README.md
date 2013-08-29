@@ -42,7 +42,7 @@ $ bundle install
     ```
 
     There are other ways to pass API information to the SDK client; see the
-    [Stormpath SDK documentation](https://github.com/stormpath/stormpath-sdk-ruby) for more info.
+    [Stormpath SDK documentation](https://stormpath.com/docs/ruby/product-guide) for more info.
 
 3.  Run the application with Rack (installed by Bundler):
 
