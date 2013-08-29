@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'stormpath-sdk', :github => 'stormpath/stormpath-sdk-ruby', :branch => 'development'
-gem 'stormpath-omniauth', git: 'git://github.com/stormpath/stormpath-omniauth', branch: 'development'
+gem "stormpath-sdk", "~> 1.0.0.beta.2"
+gem "stormpath-omniauth", "~> 1.0.0.beta.2"
 
 gem 'sinatra'
 gem 'rack-flash3'

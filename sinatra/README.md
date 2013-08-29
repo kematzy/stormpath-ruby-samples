@@ -26,9 +26,9 @@ $ bundle install
 
     2.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself an [Application Resource][concepts]. Ensure that this is a new application and not the default administrator one that is created when you create your Stormpath account.
         
-    On the Create New Application screen, make sure the "Create a new directory with this application" box is checked. This will provision a [Directory Resource][concepts] along with your new Application Resource and link the Directory to the Application as an [Account Store][concepts]. This will allow users associated with that Directory Resource to authenticate and have access to that Application Resource.
+        On the Create New Application screen, make sure the "Create a new directory with this application" box is checked. This will provision a [Directory Resource][concepts] along with your new Application Resource and link the Directory to the Application as an [Account Store][concepts]. This will allow users associated with that Directory Resource to authenticate and have access to that Application Resource.
 
-    It is important to note that although your developer account (step 1) comes with a built-in Application Resource (called "Stormpath") - you will still need to provision a separate Application Resource.
+        It is important to note that although your developer account (step 1) comes with a built-in Application Resource (called "Stormpath") - you will still need to provision a separate Application Resource.
 
     3.  Take note of the _REST URL_ of the Application you just created. Your web application will communicate with the Stormpath API in the context of this one Application Resource (operations such as: user-creation, authentication, etc.)
 
@@ -86,14 +86,10 @@ After creating an account ("User Creation") and logging in, you will be presente
 
 ```ruby
 class SampleApp < Sinatra::Base
-
   ...
-
-  set :client, Stormpath::Client.new({ :api_key_file_location => ENV['STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION'] })
-  set :application, settings.client.applications.get(ENV['STORMPATH_RUBY_SAMPLE_APPLICATION_URL'])
-
+  set :client, Stormpath::Client.new({ :api_key_file_location => ENV['STORMPATH_API_KEY_FILE_LOCATION'] })
+  set :application, settings.client.applications.get(ENV['STORMPATH_APPLICATION_URL'])
   ...
-
 end
 ```
 
@@ -108,18 +104,12 @@ module Sinatra
   module SampleApp
     module Routing
       module Accounts
-
         def self.registered(app)
-
           app.get '/sample_route' do
-
             ...
-
             settings.client # an instance of a Stormpath Client
             settings.application # an instance of the Stormpath Application
-
             ...
-
           end
         end
       end

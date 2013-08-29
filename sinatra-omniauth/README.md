@@ -26,11 +26,11 @@ $ bundle install
 
     1.  Create a [Stormpath][stormpath] developer account and [create your API Keys][create-api-keys] downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code> folder under your local home directory.
 
-    2.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself an [Application Resource][concepts]. Ensure that this is a new application and not the default administrator one that is created when you create your Stormpath account.
-        
-    On the Create New Application screen, make sure the "Create a new directory  with this application" box is checked. This will provision a [Directory Resource][concepts] along with your new Application Resource and link the Directory to the Application as an [Account Store][concepts]. This will allow users associated with that Directory Resource to authenticate and have access to that Application Resource.
+    2.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself an [Application Resource][concepts]. Ensure that this is a new application and not the default administrator one that is created when you create your Stormpath account. 
 
-    It is important to note that although your developer account (step 1) comes with a built-in Application Resource (called "Stormpath") - you will still need to provision a separate Application Resource.
+        On the Create New Application screen, make sure the "Create a new directory  with this application" box is checked. This will provision a [Directory Resource][concepts] along with your new Application Resource and link the Directory to the Application as an [Account Store][concepts]. This will allow users associated with that Directory Resource to authenticate and have access to that Application Resource. 
+
+        It is important to note that although your developer account (step 1) comes with a built-in Application Resource (called "Stormpath") - you will still need to provision a separate Application Resource.
 
     3.  Take note of the _REST URL_ of the Application you just created. Your web application will communicate with the Stormpath API in the context of this one Application Resource (operations such as: user-creation, authentication, etc.)
 
