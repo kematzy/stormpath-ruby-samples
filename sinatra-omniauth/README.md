@@ -37,8 +37,8 @@ $ bundle install
 2.  Set ENV variables as follows (perhaps in ~/.bashrc):
 
     ```
-    export STORMPATH_RUBY_SAMPLE_APPLICATION_URL=REST_URL_OF_APPLICATION_HERE
-    export STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION=PATH_TO_AFOREMENTIONED_APIKEY_PROPERTIES_FILE
+    export STORMPATH_API_KEY_FILE_LOCATION="/Users/john/.stormpath/apiKey.properties"
+    export STORMPATH_APPLICATION_URL="https://api.stormpath.com/v1/applications/YOUR_APP_ID"
     ```
 
     There are other ways to pass API information to the SDK client; see the
