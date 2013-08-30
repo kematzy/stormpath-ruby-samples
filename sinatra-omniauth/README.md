@@ -58,4 +58,4 @@ $ bundle install
     [2013-05-03 11:38:19] INFO  WEBrick::HTTPServer#start: pid=9304 port=9292
     ```
 
-4.  Visit the now-running site in your browser at http://0.0.0.0:9292
+4.  Visit the now-running site in your browser at http://0.0.0.0:9292. You can now authenticate using any of the accounts that are associated with the Stormpath application resource you have configured the sample application to connect to.
