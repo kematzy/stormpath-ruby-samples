@@ -4,7 +4,7 @@ This is a basic web application that will show you how to create, load, edit, an
 
 ## Installation
 
-These installation steps assume you've already installed RubyGems. If you've not yet installed RubyGems, go [here][rubygems-installation-docs].
+These installation steps assume you've already installed RubyGems. If you've not yet installed RubyGems, go [here](http://docs.rubygems.org/read/chapter/3).
 
 You'll need the Bundler gem in order to install dependencies listed in your project's Gemfile. To install Bundler:
 
@@ -20,15 +20,15 @@ $ bundle install
 
 ## Quickstart Guide
 
-1.  If you have not already done so, register as a developer on [Stormpath][stormpath] and set up your API credentials and resources:
+1.  If you have not already done so, register as a developer on [Stormpath](http://stormpath.com/) and set up your API credentials and resources:
 
-    1.  Create a [Stormpath][stormpath] developer account and [create your API Keys][create-api-keys] downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code> folder under your local home directory.
+    1.  Create a [Stormpath](http://www.stormpath.com) developer account and [create your API Keys](http://www.stormpath.com/docs/ruby/product-guide#AssignAPIkeys) downloading the <code>apiKey.properties</code> file into a <code>.stormpath</code> folder under your local home directory.
 
-    2.  Through the [Stormpath Admin UI][stormpath-admin-login], create yourself an [Application Resource][concepts]. Ensure that this is a new application and not the default administrator one that is created when you create your Stormpath account.
+    2.  Through the [Stormpath Admin UI](http://api.stormpath.com/login), create yourself an [Application Resource](http://www.stormpath.com/docs/stormpath-basics#keyConcepts). Ensure that this is a new application and not the default administrator one that is created when you create your Stormpath account.
         
-    On the Create New Application screen, make sure the "Create a new directory with this application" box is checked. This will provision a [Directory Resource][concepts] along with your new Application Resource and link the Directory to the Application as an [Account Store][concepts]. This will allow users associated with that Directory Resource to authenticate and have access to that Application Resource.
+        On the Create New Application screen, make sure the "Create a new directory with this application" box is checked. This will provision a [Directory Resource](http://www.stormpath.com/docs/stormpath-basics#keyConcepts) along with your new Application Resource and link the Directory to the Application as an [Account Store](http://www.stormpath.com/docs/stormpath-basics#keyConcepts). This will allow users associated with that Directory Resource to authenticate and have access to that Application Resource.
 
-    It is important to note that although your developer account (step 1) comes with a built-in Application Resource (called "Stormpath") - you will still need to provision a separate Application Resource.
+        It is important to note that although your developer account (step 1) comes with a built-in Application Resource (called "Stormpath") - you will still need to provision a separate Application Resource.
 
     3.  Take note of the _REST URL_ of the Application you just created. Your web application will communicate with the Stormpath API in the context of this one Application Resource (operations such as: user-creation, authentication, etc.)
 
@@ -40,7 +40,7 @@ $ bundle install
     ```
 
     There are other ways to pass API information to the SDK client; see the
-    [Stormpath SDK documentation][stormpath-sdk] for more info.
+    [Stormpath SDK documentation](https://stormpath.com/docs/ruby/product-guide) for more info.
 
 3.  Run the application with Rack (installed by Bundler):
 
@@ -86,14 +86,10 @@ After creating an account ("User Creation") and logging in, you will be presente
 
 ```ruby
 class SampleApp < Sinatra::Base
-
   ...
-
-  set :client, Stormpath::Client.new({ :api_key_file_location => ENV['STORMPATH_RUBY_SAMPLE_API_KEY_FILE_LOCATION'] })
-  set :application, settings.client.applications.get(ENV['STORMPATH_RUBY_SAMPLE_APPLICATION_URL'])
-
+  set :client, Stormpath::Client.new({ :api_key_file_location => ENV['STORMPATH_API_KEY_FILE_LOCATION'] })
+  set :application, settings.client.applications.get(ENV['STORMPATH_APPLICATION_URL'])
   ...
-
 end
 ```
 
@@ -108,18 +104,12 @@ module Sinatra
   module SampleApp
     module Routing
       module Accounts
-
         def self.registered(app)
-
           app.get '/sample_route' do
-
             ...
-
             settings.client # an instance of a Stormpath Client
             settings.application # an instance of the Stormpath Application
-
             ...
-
           end
         end
       end
@@ -136,7 +126,7 @@ It is possible to configure a Stormpath directory in such a way that when accoun
 
 To enable post-creation verififation for a directory:
 
-1.  Head to the [Stormpath Admin UI][stormpath-admin-login], log in, and click
+1.  Head to the [Stormpath Admin UI](http://api.stormpath.com/login), log in, and click
     "Directories."
 
 2.  From there, click the directory whose REST URL you have used to configure
@@ -159,7 +149,7 @@ If you wish for that email link to point to your local server - which will then 
 
 It is possible to configure a Stormpath directory in such a way that when accounts reset their password that the email they receive points to a token-verification URL on your local server. If you wish to configure the directory to point to your local server (instead of the Stormpath server):
 
-1.  Head to the [Stormpath Admin UI][stormpath-admin-login], log in, and click
+1.  Head to the [Stormpath Admin UI](http://api.stormpath.com/login), log in, and click
     "Directories."
 
 2.  From there, click the directory whose REST URL you have used to configure
@@ -178,7 +168,7 @@ In order to demonstrate the Stormpath Group functionality, the demo application 
 
 If you wish to experiment with group membership:
 
-1.  Head to the [Stormpath Admin UI][stormpath-admin-login], log in, and click
+1.  Head to the [Stormpath Admin UI](http://api.stormpath.com/login), log in, and click
     "Directories."
 
 2.  From there, click the directory whose REST URL you have used to configure
@@ -195,10 +185,3 @@ If you wish to experiment with group membership:
 7.  Select an account and then click "Assign Account"
 
 This account has now been associated with the "admin" group. Upon logging in to the sample application with this account, you will see a new "Delete" button appear next to each row in the list of accounts.
-
-  [rubygems-installation-docs]: http://docs.rubygems.org/read/chapter/3
-  [stormpath]: http://stormpath.com/
-  [stormpath-admin-login]: http://api.stormpath.com/login
-  [create-api-keys]: http://www.stormpath.com/docs/ruby/product-guide#AssignAPIkeys
-  [stormpath-sdk]: https://github.com/stormpath/stormpath-sdk-ruby
-  [concepts]: http://www.stormpath.com/docs/stormpath-basics#keyConcepts
