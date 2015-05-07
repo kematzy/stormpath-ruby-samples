@@ -1,0 +1,9 @@
+source 'https://rubygems.org'
+
+gem 'stormpath-sdk', '1.0.0.beta.7'
+gem 'roda'
+gem 'tilt'
+gem 'erubis'
+
+gem 'roda-bin', group: :development
+

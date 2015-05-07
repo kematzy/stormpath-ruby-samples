@@ -1,0 +1,25 @@
+<h1>Login</h1>
+
+<form class="form-horizontal" action="/session" method="post">
+  <div class="control-group">
+    <label class="control-label" for="email_or_username">Email or Username</label>
+    <div class="controls">
+      <input type="text" name="email_or_username" id="email_or_username" placeholder="Email or Username">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="password">Password</label>
+    <div class="controls">
+      <input type="password" name="password" id="password" placeholder="Password">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">Sign In</button>
+    </div>
+  </div>
+</form>
+<div class="sub-actions">
+  <a href="/password_reset_tokens/new">Forgot your password?</a><br>
+  <a href="/accounts/new">Don't have an account?</a>
+</div>
